@@ -13,21 +13,26 @@ class MoviesTableViewController: UITableViewController {
     var personKnownForDepartment:String=""
     var personProfilePath:String=""
     var personId = Int()
+    var personPage:Int=1
+    
     var personImage:UIImageView!
     var personNameLabel:UILabel!
     var personKnowLabel:UILabel!
+   
     var persons:[Person]=[]
+    
+    var urlString = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        parseJSON()
+        parseJSON(urlJsonString: urlString)
     }
 
     @IBAction func refresh(_ sender: UIRefreshControl) {
         persons.removeAll()
-        parseJSON()
+        parseJSON(urlJsonString: urlString)
         sender.endRefreshing()
         tableView.reloadData()
         
@@ -41,8 +46,8 @@ class MoviesTableViewController: UITableViewController {
         
     }
     
-    func parseJSON() {
-        let url = URL(string:"https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1")
+    func parseJSON(urlJsonString:String) {
+        let url = URL(string:urlJsonString)
         
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             
@@ -64,9 +69,10 @@ class MoviesTableViewController: UITableViewController {
             
     
             do{
+                
             let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
                 //print(personsArray)
-                self.persons.removeAll()
+                //self.persons.removeAll()
                
                 
                 for p in personsArray{
@@ -76,10 +82,12 @@ class MoviesTableViewController: UITableViewController {
                     self.personProfilePath=p["profile_path"] as? String ?? ""
                     self.personId=p["id"] as? Int ?? 0
                     
+                    
                     personObj.name=self.personName
                     personObj.known_for_department=self.personKnownForDepartment
                     personObj.profile_path=self.personProfilePath
                     personObj.id=self.personId
+                    
                     self.persons.append(personObj)
            
                    
@@ -171,6 +179,9 @@ class MoviesTableViewController: UITableViewController {
         
         personNameLabel.text=persons[indexPath.row].name
         personKnowLabel.text=persons[indexPath.row].known_for_department
+        
+        
+        
         var url:String=""
         url="https://image.tmdb.org/t/p/w500/"
         var imageUrl:String=""
@@ -180,7 +191,14 @@ class MoviesTableViewController: UITableViewController {
         get_image(imageUrl,personImage)
        
         if(indexPath.row==persons.count-1){
-            parseJSON()
+            if(personPage<500){
+                personPage = personPage+1
+            var pageString = "\(personPage)"
+            var pageUrlString = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page=" + pageString
+            
+            print(pageUrlString)
+            parseJSON(urlJsonString:pageUrlString)
+            }
             
         }
         return cell

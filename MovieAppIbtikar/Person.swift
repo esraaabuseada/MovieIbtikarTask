@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 class Person {
+    var page=Int()
     var name:String=""
     var known_for_department:String=""
     var profile_path:String=""
