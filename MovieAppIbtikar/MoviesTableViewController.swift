@@ -8,35 +8,42 @@
 
 import UIKit
 
-class MoviesTableViewController: UITableViewController {
+class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     var personName:String=""
     var personKnownForDepartment:String=""
     var personProfilePath:String=""
     var personId = Int()
     var personPage:Int=1
-    
+    var totalResults = 0
     var personImage:UIImageView!
     var personNameLabel:UILabel!
     var personKnowLabel:UILabel!
-   
+    
     var persons:[Person]=[]
     
     var urlString = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         parseJSON(urlJsonString: urlString)
     }
-
+    
     @IBAction func refresh(_ sender: UIRefreshControl) {
-        persons.removeAll()
-        parseJSON(urlJsonString: urlString)
+        reloadAll()
         sender.endRefreshing()
         tableView.reloadData()
-        
     }
+    
+    func reloadAll(){
+        personPage = 1
+        persons.removeAll()
+        parseJSON(urlJsonString: urlString)
+    }
+    
     // MARK: - Table view data source
     
     func updateData(){
@@ -67,17 +74,18 @@ class MoviesTableViewController: UITableViewController {
                 return
             }
             
-    
+            
             do{
                 
-            let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
+                self.totalResults = json["total_results"] as! Int
+                let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
                 //print(personsArray)
                 //self.persons.removeAll()
-               
+                
                 
                 for p in personsArray{
-                     var personObj=Person()
-                     self.personName=p["name"] as? String ?? ""
+                    let personObj=Person()
+                    self.personName=p["name"] as? String ?? ""
                     self.personKnownForDepartment=p["known_for_department"] as? String ?? ""
                     self.personProfilePath=p["profile_path"] as? String ?? ""
                     self.personId=p["id"] as? Int ?? 0
@@ -89,10 +97,10 @@ class MoviesTableViewController: UITableViewController {
                     personObj.id=self.personId
                     
                     self.persons.append(personObj)
-           
-                   
                     
-
+                    
+                    
+                    
                     
                     
                 }
@@ -106,9 +114,9 @@ class MoviesTableViewController: UITableViewController {
             }
             
             
-           
             
-           
+            
+            
             
         }
         
@@ -131,7 +139,7 @@ class MoviesTableViewController: UITableViewController {
             if data != nil
             {
                 let image = UIImage(data: data!)
-               
+                
                 
                 if(image != nil)
                 {
@@ -156,22 +164,22 @@ class MoviesTableViewController: UITableViewController {
         
         task.resume()
     }
-
-
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return persons.count
     }
-
-  
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath)
-
+        
         // Configure the cell...
         personImage = cell.viewWithTag(1) as? UIImageView
         personNameLabel=cell.viewWithTag(2) as? UILabel
@@ -185,20 +193,18 @@ class MoviesTableViewController: UITableViewController {
         var url:String=""
         url="https://image.tmdb.org/t/p/w500/"
         var imageUrl:String=""
-         imageUrl=url + persons[indexPath.row].profile_path
+        imageUrl=url + persons[indexPath.row].profile_path
         
         
         get_image(imageUrl,personImage)
-       
-        if(indexPath.row==persons.count-1){
-            if(personPage<500){
-                personPage = personPage+1
-            var pageString = "\(personPage)"
-            var pageUrlString = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page=" + pageString
+        
+        if(indexPath.row == persons.count-3 && persons.count != totalResults){
+            personPage = personPage+1
+            let pageString = "\(personPage)"
+            let pageUrlString = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page=" + pageString
             
             print(pageUrlString)
             parseJSON(urlJsonString:pageUrlString)
-            }
             
         }
         return cell
@@ -212,50 +218,78 @@ class MoviesTableViewController: UITableViewController {
         navigationController?.pushViewController(myVC, animated: true)
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if let searchText = searchBar.text {
+            if(!searchText.isEmpty){
+                persons.removeAll()
+                personPage = 1
+                parseJSON(urlJsonString:"https://api.themoviedb.org/3/search/person?api_key=3955a9144c79cb1fca10185c95080107&language=en-US&query=\(searchText)&page=\(personPage)&include_adult=false")
+            }
+            
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        reloadAll()
+        tableView.reloadData()
     }
-    */
-
+    
+    
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
+    /*
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
+    /*
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
