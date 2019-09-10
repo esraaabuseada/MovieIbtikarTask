@@ -2,7 +2,7 @@
 //  Person.swift
 //  MovieAppIbtikar
 //
-//  Created by Lost Star on 8/31/19.
+//  Created by user on 9/10/19.
 //  Copyright © 2019 esraa mohamed. All rights reserved.
 //
 
@@ -15,4 +15,4 @@ class Person {
     var profile_path:String=""
     var id=Int()
     
-    }
+}

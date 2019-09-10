@@ -2,7 +2,7 @@
 //  Profiles.swift
 //  MovieAppIbtikar
 //
-//  Created by Lost Star on 9/1/19.
+//  Created by user on 9/10/19.
 //  Copyright © 2019 esraa mohamed. All rights reserved.
 //
 
@@ -13,3 +13,4 @@ class Profiles {
     
     
 }
+

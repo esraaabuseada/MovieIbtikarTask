@@ -26,6 +26,7 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
     var urlString = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
     
     override func viewDidLoad() {
+        self.searchBar.delegate = self
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -224,7 +225,7 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
             if(!searchText.isEmpty){
                 persons.removeAll()
                 personPage = 1
-                parseJSON(urlJsonString:"https://api.themoviedb.org/3/search/person?api_key=3955a9144c79cb1fca10185c95080107&language=en-US&query=\(searchText)&page=\(personPage)&include_adult=false")
+                parseJSON(urlJsonString:"https://api.themoviedb.org/3/search/person?api_key=3955a9144c79cb1fca10185c95080107&language=en-US&query=\(searchText.replacingOccurrences(of: " ", with: "%20"))&page=\(personPage)&include_adult=false")
             }
             
         }
