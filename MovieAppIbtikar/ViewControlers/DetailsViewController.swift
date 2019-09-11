@@ -9,13 +9,22 @@
 import UIKit
 
 class DetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    @IBOutlet var collectionview: UICollectionView!
+    var  imageURL="https://image.tmdb.org/t/p/w500/"
+    var personObjPassed = Person()
+     var profiles:[Profiles]=[]
+    
+    
    var stringPassed = ""
    var theImagePassed = ""
    var idPassed = Int()
+    
+  
+    
    var personId = Int()
    var file_path:String=""
-   @IBOutlet var collectionview: UICollectionView!
-   var profiles:[Profiles]=[]
+  
+  
    
     
     override func viewDidLoad() {
@@ -25,6 +34,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         
         personId=idPassed
         parseJSON(personId: personId)
+        
     }
     
     func updateData(){
@@ -35,9 +45,9 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func parseJSON(personId:Int) {
-        let str = "\(personId)"
+        let str = "\(personObjPassed.id)"
         let imagesUrl="https://api.themoviedb.org/3/person/"+str + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
-        print(imagesUrl)
+      //  print(imagesUrl)
         let url = URL(string:imagesUrl)
         
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
@@ -67,8 +77,9 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
                 
                 for p in profilesArray{
                     var profileObj=Profiles()
-                    self.file_path=p["file_path"] as? String ?? ""
-                    profileObj.file_path=self.file_path
+                        
+                    profileObj.file_path=p["file_path"] as? String ?? ""
+                   
                     self.profiles.append(profileObj)
                 }
                 
@@ -144,16 +155,11 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        
-        
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
         cell.layer.cornerRadius = 3
         
-        var url:String=""
-        url="https://image.tmdb.org/t/p/w500/"
-        var path:String=""
-        path=url + profiles[indexPath.row].file_path
+      var path=imageURL + profiles[indexPath.row].file_path
         
         get_image(path,cell.collectionImage)
         return cell
@@ -162,7 +168,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionview.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderVIew", for: indexPath) as! HeaderVIew
-        header.headerLabel.text=stringPassed
+        header.headerLabel.text=personObjPassed.name
         
         var url:String=""
         url="https://image.tmdb.org/t/p/w500/"

@@ -13,10 +13,12 @@ class ActorModel {
     let networkService = JsonDownload()
     
     
+    
     var updateUI : ((_ result:[Person])->())?
+     var updateImage : ((_ resultImage:Data)->())?
     
     init(){
-        networkService.onComplete = { result in
+        networkService.onCompleteJason = { result in
             guard let json = (try? JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
                 print("Not containing JSON")
                 return
@@ -50,12 +52,43 @@ class ActorModel {
             
             
         }
+        networkService.onCompleteImage = {imageData in
+            if imageData != nil
+                        {
+                            let data = imageData
+                            self.updateImage!(data)
+//                            let image = UIImage(data: data!)
+//
+//
+//                            if(image != nil)
+//                            {
+//
+//                                DispatchQueue.main.async(execute: {
+//
+//                                    imageView.image = image
+//                                    imageView.alpha = 0
+//
+//                                    UIView.animate(withDuration: 2.5, animations: {
+//                                        imageView.alpha = 1.0
+//                                    })
+//
+//                                })
+//
+//                            }
+            
+            }}
     
 
     }
-        func requestURL (url: String , completion: @escaping ([Person])  ->()){
+    func requestURL (url: String ,pageNo:Int, completion: @escaping ([Person])  ->()){
         updateUI = completion
-         networkService.downloadJason(urlJsonString: url)
+         networkService.downloadJason(urlJsonString: url,page:pageNo )
+    }
+    
+    
+    func requestImageURL (url: String,completion: @escaping (Data)  ->()){
+        updateImage = completion
+        networkService.get_image(url)
     }
     
     

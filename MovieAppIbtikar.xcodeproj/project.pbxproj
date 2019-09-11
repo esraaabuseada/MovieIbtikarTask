@@ -138,7 +138,6 @@
 				84AB3BA22318279100F80850 /* MovieAppIbtikar.xcdatamodeld */,
 				842560A4231946EE00711D3B /* MoviesTableViewController.swift */,
 				848B38F5231C52E10003A186 /* HeaderVIew.swift */,
-				848B38F7231C56490003A186 /* DetailsViewController.swift */,
 				848B38F9231C58590003A186 /* CustomCell.swift */,
 				848B38FD231C9BA00003A186 /* FullScreenViewController.swift */,
 			);
@@ -177,6 +176,7 @@
 				CE3F3D3A2327CFDA00F03BF8 /* ActorViewController.swift */,
 				CE3F3D462327DAFC00F03BF8 /* DetailsScreenViewController.swift */,
 				CE3F3D422327D8E500F03BF8 /* SaveImageViewController.swift */,
+				848B38F7231C56490003A186 /* DetailsViewController.swift */,
 				CE0550FE2328E8210063F999 /* ActorTableViewCell.swift */,
 			);
 			path = ViewControlers;

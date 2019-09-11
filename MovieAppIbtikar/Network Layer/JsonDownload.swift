@@ -10,11 +10,13 @@ import Foundation
 class JsonDownload{
     
     var persons:[Person]=[]
-    var onComplete: ((_ result: Data)->())?
+    var onCompleteJason: ((_ result: Data)->())?
+    var onCompleteImage: ((_ imageData: Data)->())?
     
-    func downloadJason(urlJsonString:String) {
+    func downloadJason(urlJsonString:String,page:Int) {
         //run animation, upon completion send callback
-        let url = URL(string:urlJsonString)
+        let urlString=urlJsonString+"\(page)"
+        let url = URL(string:urlString)
         
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             
@@ -28,12 +30,7 @@ class JsonDownload{
                 return
             }
             
-            
-            guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-                print("Not containing JSON")
-                return
-            }
-            self.onComplete?(data!)
+            self.onCompleteJason?(data!)
             
             
         }
@@ -44,66 +41,50 @@ class JsonDownload{
     }
     
     
-//    func downloadJSON(urlJsonString:String) {
-//        let url = URL(string:urlJsonString)
-//
-//        let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
-//
-//            guard error == nil else {
-//                print("returning error")
-//                return
-//            }
-//
-//            guard let content = data else {
-//                print("not returning data")
-//                return
-//            }
-//
-//
-//            guard let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-//                print("Not containing JSON")
-//                return
-//            }
+    
+    func get_image(_ url_str:String)
+    {
+        
+        let url:URL = URL(string: url_str)!
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: url, completionHandler: {
+            (
+            data, response, error) in
+            
+            
+//            if data != nil
+//            {
+//                let image = UIImage(data: data!)
 //
 //
-////            do{
-////
-////                //self.totalResults = json["total_results"] as! Int
-////                let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
-////                //print(personsArray)
-////                //self.persons.removeAll()
-////
-////
-////                for p in personsArray{
-////                    let personObj=Person()
-////                    personObj.name=p["name"] as? String ?? ""
-////                    personObj.known_for_department=p["known_for_department"] as? String ?? ""
-////                    personObj.profile_path=p["profile_path"] as? String ?? ""
-////                    personObj.id=p["id"] as? Int ?? 0
-////                    self.persons.append(personObj)
-////                }
-////
-////                //self.updateData()
-////
-////
-////            }
-////            catch{
-////                print("unable parse jason")
-////            }
-////
-////
-////
-////
-////
-////
-//      }
+//                if(image != nil)
+//                {
 //
-//        task.resume()
+//                    DispatchQueue.main.async(execute: {
 //
-//    }
+//                        imageView.image = image
+//                        imageView.alpha = 0
 //
+//                        UIView.animate(withDuration: 2.5, animations: {
+//                            imageView.alpha = 1.0
+//                        })
 //
+//                    })
 //
+//                }
+            
+            //}
+            
+            self.onCompleteImage?(data!)
+        })
+        
+        task.resume()
+    }
+    
+    
+    
+
     
     
     
