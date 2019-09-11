@@ -13,51 +13,52 @@ class ActorModel {
     let networkService = JsonDownload()
     
     
+    var updateUI : ((_ result:[Person])->())?
     
-    
-    var onComplete: ((_ result: [Person])->())?
-    
-    func fetchDataFromUrl(url: String) {
-          
-    }
-    
-   func parseJSON()->[Person]{
-    networkService.onComplete = { data in
-        
-      
-        guard let json = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-            print("Not containing JSON")
-            return
+    init(){
+        networkService.onComplete = { result in
+            guard let json = (try? JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
+                print("Not containing JSON")
+                return
+            }
+            do{
+                
+                //self.totalResults = json["total_results"] as! Int
+                let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
+                //print(personsArray)
+                //self.persons.removeAll()
+                
+                
+                for p in personsArray{
+                    let personObj=Person()
+                    personObj.name=p["name"] as? String ?? ""
+                    personObj.known_for_department=p["known_for_department"] as? String ?? ""
+                    personObj.profile_path=p["profile_path"] as? String ?? ""
+                    personObj.id=p["id"] as? Int ?? 0
+                    self.persons.append(personObj)
+                }
+                
+                //self.updateData()
+                self.updateUI!(self.persons)
+                
+            }
+            catch{
+                print("unable parse jason")
+            }
+            
+            
+            
+            
         }
-        do{
-            
-                            //self.totalResults = json["total_results"] as! Int
-                            let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
-                            //print(personsArray)
-                            //self.persons.removeAll()
-            
-            
-                            for p in personsArray{
-                                let personObj=Person()
-                                personObj.name=p["name"] as? String ?? ""
-                                personObj.known_for_department=p["known_for_department"] as? String ?? ""
-                                personObj.profile_path=p["profile_path"] as? String ?? ""
-                                personObj.id=p["id"] as? Int ?? 0
-                                self.persons.append(personObj)
-                            }
-            
-                            //self.updateData()
-            
-            
-                        }
-                        catch{
-                            print("unable parse jason")
-                        }
-            
     
+
     }
-    return persons
-}
+        func requestURL (url: String , completion: @escaping ([Person])  ->()){
+        updateUI = completion
+         networkService.downloadJason(urlJsonString: url)
+    }
     
     
+    
+
 }

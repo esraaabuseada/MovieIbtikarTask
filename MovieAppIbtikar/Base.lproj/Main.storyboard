@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="06b-xM-HLR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zHS-tX-RdA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -110,7 +110,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="personCell" rowHeight="171" id="LnV-tL-WiI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="actorCell" rowHeight="171" id="LnV-tL-WiI" customClass="ActorTableViewCell" customModule="MovieAppIbtikar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LnV-tL-WiI" id="TJ1-pc-cWH">
@@ -155,18 +155,30 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="cL5-pR-ZRt" secondAttribute="trailing" id="tNj-Om-6BV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="actorImage" destination="l5D-u0-Z4v" id="GYI-E8-pbb"/>
+                                            <outlet property="actorKnown" destination="LvR-8n-UqF" id="WCj-YA-fne"/>
+                                            <outlet property="actorName" destination="cL5-pR-ZRt" id="sHP-me-vDw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zHS-tX-RdA" id="3vB-3t-Q0x"/>
+                                    <outlet property="delegate" destination="zHS-tX-RdA" id="jgA-dT-gBU"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zmB-EI-HW7"/>
                     </view>
                     <navigationItem key="navigationItem" id="NKx-7f-vY6"/>
+                    <connections>
+                        <outlet property="actorsTableview" destination="nVh-1c-Zwo" id="oww-Mp-uqR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tAm-ww-Nlg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="-208"/>
+            <point key="canvasLocation" x="2205.5999999999999" y="-208.24587706146929"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="saU-ww-2bf">
