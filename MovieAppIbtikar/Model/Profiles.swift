@@ -8,9 +8,8 @@
 
 import Foundation
 import UIKit
+
 class Profiles {
     var file_path:String=""
-    
-    
 }
 

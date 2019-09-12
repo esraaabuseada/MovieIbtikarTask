@@ -14,8 +14,30 @@ class JsonDownload{
     var onCompleteJason: ((_ result: Data)->())?
     var onCompleteImage: ((_ imageData: Data,_ imageView:UIImageView)->())?
     
-    func downloadJason(urlJsonString:String,page:Int) {
+    func downloadProfilesJson(urlJsonString:String) {
       
+        
+        let url = URL(string:urlJsonString)
+        let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+            
+            guard error == nil else {
+                print("returning error")
+                return
+            }
+            
+            guard let content = data else {
+                print("not returning data")
+                return
+            }
+            
+            self.onCompleteJason?(data!)
+        }
+        task.resume()
+    }
+    
+    
+    func downloadJason(urlJsonString:String,page:Int) {
+        
         let urlString=urlJsonString+"\(page)"
         let url = URL(string:urlString)
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
@@ -34,6 +56,8 @@ class JsonDownload{
         }
         task.resume()
     }
+    
+    
     
     func get_image(_ url_str:String,imageDownloded:UIImageView)
     {

@@ -76,7 +76,7 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
     }
     
-    // Download Image
+    // sET Image
     func  getImage(actorImageView:UIImageView,imageData:Data ) {
         if imageData != nil
         {

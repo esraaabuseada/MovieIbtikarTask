@@ -137,8 +137,6 @@
 				84AB3BAA2318279A00F80850 /* Info.plist */,
 				84AB3BA22318279100F80850 /* MovieAppIbtikar.xcdatamodeld */,
 				842560A4231946EE00711D3B /* MoviesTableViewController.swift */,
-				848B38F5231C52E10003A186 /* HeaderVIew.swift */,
-				848B38F9231C58590003A186 /* CustomCell.swift */,
 				848B38FD231C9BA00003A186 /* FullScreenViewController.swift */,
 			);
 			path = MovieAppIbtikar;
@@ -178,6 +176,8 @@
 				CE3F3D422327D8E500F03BF8 /* SaveImageViewController.swift */,
 				848B38F7231C56490003A186 /* DetailsViewController.swift */,
 				CE0550FE2328E8210063F999 /* ActorTableViewCell.swift */,
+				848B38F9231C58590003A186 /* CustomCell.swift */,
+				848B38F5231C52E10003A186 /* HeaderVIew.swift */,
 			);
 			path = ViewControlers;
 			sourceTree = "<group>";

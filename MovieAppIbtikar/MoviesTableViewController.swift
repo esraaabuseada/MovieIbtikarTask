@@ -213,9 +213,6 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myVC = storyboard?.instantiateViewController(withIdentifier: "dvc") as! DetailsViewController
-        myVC.stringPassed = persons[indexPath.row].name
-        myVC.theImagePassed =  persons[indexPath.row].profile_path
-        myVC.idPassed = persons[indexPath.row].id
         navigationController?.pushViewController(myVC, animated: true)
     }
     
