@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ActorModel {
     var persons:[Person]=[]
@@ -15,21 +16,25 @@ class ActorModel {
     
     
     var updateUI : ((_ result:[Person])->())?
-     var updateImage : ((_ resultImage:Data)->())?
+    var updateImage : ((_ resultImage:Data,_ resultImageView:UIImageView)->())?
     
     init(){
+        
+    
         networkService.onCompleteJason = { result in
             guard let json = (try? JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
                 print("Not containing JSON")
                 return
+                
             }
+          
             do{
                 
                 //self.totalResults = json["total_results"] as! Int
                 let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
-                //print(personsArray)
-                //self.persons.removeAll()
                 
+                
+                self.persons = []
                 
                 for p in personsArray{
                     let personObj=Person()
@@ -47,48 +52,28 @@ class ActorModel {
             catch{
                 print("unable parse jason")
             }
-            
-            
-            
-            
         }
-        networkService.onCompleteImage = {imageData in
+        
+        networkService.onCompleteImage = {imageData ,imageView in
             if imageData != nil
-                        {
-                            let data = imageData
-                            self.updateImage!(data)
-//                            let image = UIImage(data: data!)
-//
-//
-//                            if(image != nil)
-//                            {
-//
-//                                DispatchQueue.main.async(execute: {
-//
-//                                    imageView.image = image
-//                                    imageView.alpha = 0
-//
-//                                    UIView.animate(withDuration: 2.5, animations: {
-//                                        imageView.alpha = 1.0
-//                                    })
-//
-//                                })
-//
-//                            }
-            
+            {
+                let data = imageData
+                let image = imageView
+                self.updateImage!(data,image)
             }}
-    
-
     }
+    
     func requestURL (url: String ,pageNo:Int, completion: @escaping ([Person])  ->()){
+      
         updateUI = completion
          networkService.downloadJason(urlJsonString: url,page:pageNo )
+        
     }
     
     
-    func requestImageURL (url: String,completion: @escaping (Data)  ->()){
+    func requestImageURL (url: String,imageD:UIImageView,completion: @escaping (Data,UIImageView)  ->()){
         updateImage = completion
-        networkService.get_image(url)
+        networkService.get_image(url,imageDownloded: imageD)
     }
     
     

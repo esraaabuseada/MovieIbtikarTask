@@ -7,17 +7,17 @@
 //
 
 import Foundation
+import UIKit
+
 class JsonDownload{
-    
-    var persons:[Person]=[]
+    var  actorImageView: UIImageView = UIImageView()
     var onCompleteJason: ((_ result: Data)->())?
-    var onCompleteImage: ((_ imageData: Data)->())?
+    var onCompleteImage: ((_ imageData: Data,_ imageView:UIImageView)->())?
     
     func downloadJason(urlJsonString:String,page:Int) {
-        //run animation, upon completion send callback
+      
         let urlString=urlJsonString+"\(page)"
         let url = URL(string:urlString)
-        
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             
             guard error == nil else {
@@ -31,54 +31,15 @@ class JsonDownload{
             }
             
             self.onCompleteJason?(data!)
-            
-            
         }
-        
         task.resume()
-        
-        
     }
     
-    
-    
-    func get_image(_ url_str:String)
+    func get_image(_ url_str:String,imageDownloded:UIImageView)
     {
-        
         let url:URL = URL(string: url_str)!
         let session = URLSession.shared
-        
-        let task = session.dataTask(with: url, completionHandler: {
-            (
-            data, response, error) in
-            
-            
-//            if data != nil
-//            {
-//                let image = UIImage(data: data!)
-//
-//
-//                if(image != nil)
-//                {
-//
-//                    DispatchQueue.main.async(execute: {
-//
-//                        imageView.image = image
-//                        imageView.alpha = 0
-//
-//                        UIView.animate(withDuration: 2.5, animations: {
-//                            imageView.alpha = 1.0
-//                        })
-//
-//                    })
-//
-//                }
-            
-            //}
-            
-            self.onCompleteImage?(data!)
-        })
-        
+        let task = session.dataTask(with: url, completionHandler: {(data, response, error) in self.onCompleteImage?(data!,self.actorImageView)})
         task.resume()
     }
     
