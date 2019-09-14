@@ -9,14 +9,19 @@
 import UIKit
 
 class FullScreenViewController: UIViewController {
-    var fullImagePassed = ""
+    
+    @IBOutlet var saveImage: UIImageView!
+    var profilePassedObj :Profiles = Profiles()
+    let detailsModelObj = DetailsModel()
+    
+     var imageURL="https://image.tmdb.org/t/p/w500/"
+     var imgData :Data=Data()
 
-    @IBOutlet var fullImage: UIImageView!
     
     @IBAction func SaveImage(_ sender: UIButton) {
         
-        let imageData = fullImage.image!.pngData()
-        let compresedImage = UIImage(data: imageData!)
+        let imgSaveData = saveImage.image!.pngData()
+        let compresedImage = UIImage(data:imgSaveData!)
         UIImageWriteToSavedPhotosAlbum(compresedImage!, nil, nil, nil)
         
         let alert = UIAlertController(title: "Saved", message: "Your image has been saved", preferredStyle: .alert)
@@ -27,56 +32,46 @@ class FullScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var url:String=""
-        url="https://image.tmdb.org/t/p/w500/"
-        var imageUrl:String=""
-        imageUrl=url + fullImagePassed
         
-        
-        get_image(imageUrl,fullImage)
+        var imgString = imageURL + profilePassedObj.file_path
+        print("saaavee" + imgString)
+      
+        detailsModelObj.requestImageURLProfile(url:imgString,imageD: saveImage, completion:{dataResult , imageResult in
+            self.imgData = dataResult
+            self.saveImage = imageResult
+           
+            
+        })
+      
+        getImage(actorImageView: saveImage,imageData:self.imgData  )
     }
     
-    
-    
-    func get_image(_ url_str:String, _ imageView:UIImageView)
-    {
-        
-        let url:URL = URL(string: url_str)!
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: url, completionHandler: {
-            (
-            data, response, error) in
+    func  getImage(actorImageView:UIImageView,imageData:Data ) {
+        if imageData != nil
+        {
+            let image = UIImage(data: imageData)
             
             
-            if data != nil
+            if(image != nil)
             {
-                let image = UIImage(data: data!)
                 
-                
-                if(image != nil)
-                {
+                DispatchQueue.main.async(execute: {
                     
-                    DispatchQueue.main.async(execute: {
-                        
-                        imageView.image = image
-                        
-                        
-                        
-                        
-                    })
+                    actorImageView.image = image
+                    actorImageView.alpha = 0
                     
-                }
+                    
+                   
+                    
+                })
                 
             }
             
-            
-        })
+        }
         
-        task.resume()
     }
-   
     
+   
 
     /*
     // MARK: - Navigation

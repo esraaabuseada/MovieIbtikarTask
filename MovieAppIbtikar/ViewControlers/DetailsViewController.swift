@@ -34,7 +34,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         
        urlString = "https://api.themoviedb.org/3/person/" + "\(personObjPassed.id)" + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
        
-        detailsModelObj.requestURL(url:urlString,completion: { _result in
+        detailsModelObj.requestURLProfile(url:urlString,completion: { _result in
             print(_result)
             self.profilesArray = _result
             
@@ -73,7 +73,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
                     actorImageView.alpha = 0
                     
                     
-                    UIView.animate(withDuration: 2.5, animations: {
+                    UIView.animate(withDuration: 0, animations: {
                         actorImageView.alpha = 1.0
                     })
                     
@@ -107,7 +107,14 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         cell.layer.borderWidth = 0.5
         cell.layer.cornerRadius = 3
         
-        
+        let urlProfiles = imageURL + profilesArray[indexPath.row].file_path
+        print("profiles" + urlProfiles)
+detailsModelObj.requestImageURLProfile(url: urlProfiles,imageD: cell.collectionImage, completion:{dataResult , imageResult in
+            self.imgData = dataResult
+            cell.collectionImage = imageResult
+            
+        })
+        self.getImage(actorImageView: cell.collectionImage,imageData:self.imgData  )
       
         return cell
     }
@@ -117,10 +124,12 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         let header = collectionview.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderVIew", for: indexPath) as! HeaderVIew
         header.headerLabel.text=personObjPassed.name
         
-        imageURL += personObjPassed.profile_path
-        actorModelObj.requestImageURL(url:imageURL,imageD: header.headerImage, completion:{dataResult , imageResult in
+        
+        var imgString = imageURL + personObjPassed.profile_path
+        print("person" + imgString)
+        actorModelObj.requestImageURL(url:imgString,imageD: header.headerImage, completion:{dataResult , imageResult in
             self.imgData = dataResult
-            header.headerImage = imageResult
+           // header.headerImage = imageResult
             
         })
         print(self.imgData)
@@ -132,7 +141,8 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fulVC = storyboard?.instantiateViewController(withIdentifier: "fulVC") as! FullScreenViewController
-        fulVC.fullImagePassed =  profilesArray[indexPath.row].file_path
+    
+        fulVC.profilePassedObj = profilesArray[indexPath.row]
         
         navigationController?.pushViewController(fulVC , animated:true)    }
 

@@ -13,6 +13,8 @@ class JsonDownload{
     var  actorImageView: UIImageView = UIImageView()
     var onCompleteJason: ((_ result: Data)->())?
     var onCompleteImage: ((_ imageData: Data,_ imageView:UIImageView)->())?
+    var onCompleteJasonProfile: ((_ resultProfile: Data)->())?
+    var onCompleteImageProfile: ((_ imageDataProfile: Data,_ imageView:UIImageView)->())?
     
     func downloadProfilesJson(urlJsonString:String) {
       
@@ -30,7 +32,7 @@ class JsonDownload{
                 return
             }
             
-            self.onCompleteJason?(data!)
+            self.onCompleteJasonProfile?(data!)
         }
         task.resume()
     }
@@ -66,6 +68,7 @@ class JsonDownload{
         let task = session.dataTask(with: url, completionHandler: {(data, response, error) in self.onCompleteImage?(data!,self.actorImageView)})
         task.resume()
     }
+    
     
     
     

@@ -128,6 +128,7 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
             cell?.actorImage = imageResult
             
         })
+    
         self.getImage(actorImageView: cell!.actorImage,imageData:self.imgData  )
         
         

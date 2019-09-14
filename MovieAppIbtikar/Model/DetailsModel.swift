@@ -15,14 +15,14 @@ class DetailsModel {
     
     
     
-    var updateUI : ((_ result:[Profiles])->())?
-    var updateImage : ((_ resultImage:Data,_ resultImageView:UIImageView)->())?
+    var updateUIProfile : ((_ resultProfile:[Profiles])->())?
+    var updateImageProfile : ((_ resultImageProfile:Data,_ resultImageViewProfile:UIImageView)->())?
     
     init(){
         
         
-        networkService.onCompleteJason = { result in
-            guard let json = (try? JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
+        networkService.onCompleteJasonProfile = { resultProfile in
+            guard let json = (try? JSONSerialization.jsonObject(with: resultProfile, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
                 print("Not containing JSON")
                 return
                 
@@ -48,7 +48,7 @@ class DetailsModel {
                 
                 
                 //self.updateData()
-                self.updateUI!(self.profiles)
+                self.updateUIProfile!(self.profiles)
                 
             }
             catch{
@@ -61,19 +61,19 @@ class DetailsModel {
             {
                 let data = imageData
                 let image = imageView
-                self.updateImage!(data,image)
+                self.updateImageProfile!(data,image)
             }}
     }
     
-    func requestURL (url: String , completion: @escaping ([Profiles])  ->()){
-        updateUI = completion
+    func requestURLProfile (url: String , completion: @escaping ([Profiles])  ->()){
+        updateUIProfile = completion
         networkService.downloadProfilesJson(urlJsonString: url)
         
     }
     
     
-    func requestImageURL (url: String,imageD:UIImageView,completion: @escaping (Data,UIImageView)  ->()){
-        updateImage = completion
+    func requestImageURLProfile (url: String,imageD:UIImageView,completion: @escaping (Data,UIImageView)  ->()){
+        updateImageProfile = completion
         networkService.get_image(url,imageDownloded: imageD)
     }
     
