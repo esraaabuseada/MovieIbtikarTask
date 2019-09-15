@@ -16,6 +16,7 @@ class FullScreenViewController: UIViewController {
     
      var imageURL="https://image.tmdb.org/t/p/w500/"
      var imgData :Data=Data()
+        var img : UIImage!
 
     
     @IBAction func SaveImage(_ sender: UIButton) {
@@ -33,17 +34,7 @@ class FullScreenViewController: UIViewController {
         super.viewDidLoad()
         
         
-        var imgString = imageURL + profilePassedObj.file_path
-        print("saaavee" + imgString)
-      
-        detailsModelObj.requestImageURLProfile(url:imgString,imageD: saveImage, completion:{dataResult , imageResult in
-            self.imgData = dataResult
-            self.saveImage = imageResult
-           
-            
-        })
-      
-        getImage(actorImageView: saveImage,imageData:self.imgData  )
+       saveImage.image = img
     }
     
     func  getImage(actorImageView:UIImageView,imageData:Data ) {

@@ -52,9 +52,6 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
     }
     
-    
-    
-    
     //Update UI
     func updateData(){
         DispatchQueue.main.async {
@@ -128,10 +125,8 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
             cell?.actorImage = imageResult
             
         })
-    
+        
         self.getImage(actorImageView: cell!.actorImage,imageData:self.imgData  )
-        
-        
         
         //Load More
         if(indexPath.row == personsArray.count-3 && personsArray.count != totalResults){
@@ -154,7 +149,9 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myVC = storyboard?.instantiateViewController(withIdentifier: "dvc") as! DetailsViewController
+        let selectedCell = actorsTableview.cellForRow(at: indexPath) as? ActorTableViewCell
         myVC.personObjPassed = personsArray[indexPath.row]
+        myVC.passedImage  = selectedCell?.actorImage.image
         navigationController?.pushViewController(myVC, animated: true)
     }
     
@@ -164,29 +161,21 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
             if(!searchText.isEmpty){
                 self.personsArray = []
                 pageNumber = 1
-                
                 searchUrl = "https://api.themoviedb.org/3/search/person?api_key=3955a9144c79cb1fca10185c95080107&language=en-US&query=\(searchText.replacingOccurrences(of:" ", with:"%20"))&include_adult=false&page="
-                
                 self.actorModelObj.requestURL(url: searchUrl,pageNo:self.pageNumber, completion: { _result in
                     self.personsArray.append(contentsOf: _result)
                     print(self.personsArray)
                     self.updateData()
                 })
                 searchFlag = true
-                
             }
-            
-            
         }
-        
     }
     
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
-    
-    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
@@ -196,7 +185,5 @@ class ActorViewController: UIViewController,UITableViewDataSource,UITableViewDel
         actorsTableview.reloadData()
         searchFlag = false
     }
-    
-    
 }
 

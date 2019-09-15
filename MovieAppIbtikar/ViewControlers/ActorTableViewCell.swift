@@ -11,11 +11,8 @@ import UIKit
 class ActorTableViewCell: UITableViewCell {
 
     @IBOutlet weak var actorImage: UIImageView!
-    
     @IBOutlet weak var actorName: UILabel!
-    
     @IBOutlet weak var actorKnown: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

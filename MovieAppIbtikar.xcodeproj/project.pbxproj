@@ -25,7 +25,6 @@
 		CE3F3D532327DCDA00F03BF8 /* Profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D522327DCDA00F03BF8 /* Profiles.swift */; };
 		CE3F3D552327DE8F00F03BF8 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */; };
 		CE3F3D572327DEA500F03BF8 /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */; };
-		CE3F3D592327DEB800F03BF8 /* SaveImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D582327DEB800F03BF8 /* SaveImageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +69,6 @@
 		CE3F3D522327DCDA00F03BF8 /* Profiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profiles.swift; sourceTree = "<group>"; };
 		CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
-		CE3F3D582327DEB800F03BF8 /* SaveImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +178,6 @@
 				CE3F3D522327DCDA00F03BF8 /* Profiles.swift */,
 				CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */,
 				CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */,
-				CE3F3D582327DEB800F03BF8 /* SaveImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,7 +314,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE3F3D3B2327CFDA00F03BF8 /* ActorViewController.swift in Sources */,
-				CE3F3D592327DEB800F03BF8 /* SaveImageModel.swift in Sources */,
 				848B38F6231C52E10003A186 /* HeaderVIew.swift in Sources */,
 				84AB3BA42318279100F80850 /* MovieAppIbtikar.xcdatamodeld in Sources */,
 				84AB3B9C2318279100F80850 /* AppDelegate.swift in Sources */,

@@ -12,15 +12,10 @@ import UIKit
 class DetailsModel {
     var profiles:[Profiles]=[]
     let networkService = JsonDownload()
-    
-    
-    
     var updateUIProfile : ((_ resultProfile:[Profiles])->())?
     var updateImageProfile : ((_ resultImageProfile:Data,_ resultImageViewProfile:UIImageView)->())?
     
     init(){
-        
-        
         networkService.onCompleteJasonProfile = { resultProfile in
             guard let json = (try? JSONSerialization.jsonObject(with: resultProfile, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
                 print("Not containing JSON")
@@ -32,11 +27,6 @@ class DetailsModel {
                 
              
                 let profilesArray = json["profiles"] as? [Dictionary<String,Any>] ?? []
-                
-             // self.profiles.removeAll()
-              
-                
-                
                 for p in profilesArray{
                     var profileObj=Profiles()
                     
@@ -45,15 +35,10 @@ class DetailsModel {
                     self.profiles.append(profileObj)
                     
                 }
-                
-                
-                //self.updateData()
                 self.updateUIProfile!(self.profiles)
                 
             }
-            catch{
-                print("unable parse jason")
-            }
+            
         }
         
         networkService.onCompleteImage = {imageData ,imageView in
@@ -64,20 +49,15 @@ class DetailsModel {
                 self.updateImageProfile!(data,image)
             }}
     }
-    
+
     func requestURLProfile (url: String , completion: @escaping ([Profiles])  ->()){
         updateUIProfile = completion
         networkService.downloadProfilesJson(urlJsonString: url)
         
     }
-    
-    
+
     func requestImageURLProfile (url: String,imageD:UIImageView,completion: @escaping (Data,UIImageView)  ->()){
         updateImageProfile = completion
         networkService.get_image(url,imageDownloded: imageD)
     }
-    
-    
-    
-    
 }
