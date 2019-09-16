@@ -23,6 +23,10 @@
 		CE04E7E5232F81030028BA22 /* ActorModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7E4232F81030028BA22 /* ActorModelProtocol.swift */; };
 		CE04E7E7232F81430028BA22 /* ActorViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7E6232F81430028BA22 /* ActorViewProtocol.swift */; };
 		CE04E7E9232F8ED60028BA22 /* ActorTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7E8232F8ED60028BA22 /* ActorTableViewCellProtocol.swift */; };
+		CE04E7EC232FA8600028BA22 /* DetailsModelProtocole.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7EB232FA8600028BA22 /* DetailsModelProtocole.swift */; };
+		CE04E7EE232FA8720028BA22 /* DetailsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7ED232FA8720028BA22 /* DetailsViewProtocol.swift */; };
+		CE04E7F0232FA88A0028BA22 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7EF232FA88A0028BA22 /* DetailsCollectionViewCell.swift */; };
+		CE04E7F2232FDA960028BA22 /* DetailHeaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04E7F1232FDA960028BA22 /* DetailHeaderProtocol.swift */; };
 		CE0550FF2328E8210063F999 /* ActorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0550FE2328E8210063F999 /* ActorTableViewCell.swift */; };
 		CE3F3D3B2327CFDA00F03BF8 /* ActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D3A2327CFDA00F03BF8 /* ActorViewController.swift */; };
 		CE3F3D452327D93400F03BF8 /* JsonDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D442327D93400F03BF8 /* JsonDownload.swift */; };
@@ -72,6 +76,10 @@
 		CE04E7E4232F81030028BA22 /* ActorModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModelProtocol.swift; sourceTree = "<group>"; };
 		CE04E7E6232F81430028BA22 /* ActorViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorViewProtocol.swift; sourceTree = "<group>"; };
 		CE04E7E8232F8ED60028BA22 /* ActorTableViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTableViewCellProtocol.swift; sourceTree = "<group>"; };
+		CE04E7EB232FA8600028BA22 /* DetailsModelProtocole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModelProtocole.swift; sourceTree = "<group>"; };
+		CE04E7ED232FA8720028BA22 /* DetailsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewProtocol.swift; sourceTree = "<group>"; };
+		CE04E7EF232FA88A0028BA22 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE04E7F1232FDA960028BA22 /* DetailHeaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderProtocol.swift; sourceTree = "<group>"; };
 		CE0550FE2328E8210063F999 /* ActorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTableViewCell.swift; sourceTree = "<group>"; };
 		CE3F3D3A2327CFDA00F03BF8 /* ActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorViewController.swift; sourceTree = "<group>"; };
 		CE3F3D442327D93400F03BF8 /* JsonDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDownload.swift; sourceTree = "<group>"; };
@@ -195,6 +203,7 @@
 		CE04E7DE232F7DE70028BA22 /* ActorProfilesImages */ = {
 			isa = PBXGroup;
 			children = (
+				CE04E7EA232FA83C0028BA22 /* Protocols */,
 				CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */,
 				CE04E7E2232F7E9F0028BA22 /* DetailsPresenter.swift */,
 				848B38F7231C56490003A186 /* DetailsViewController.swift */,
@@ -210,6 +219,17 @@
 				848B38FD231C9BA00003A186 /* FullScreenViewController.swift */,
 			);
 			path = SavaProfileImage;
+			sourceTree = "<group>";
+		};
+		CE04E7EA232FA83C0028BA22 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CE04E7EB232FA8600028BA22 /* DetailsModelProtocole.swift */,
+				CE04E7ED232FA8720028BA22 /* DetailsViewProtocol.swift */,
+				CE04E7EF232FA88A0028BA22 /* DetailsCollectionViewCell.swift */,
+				CE04E7F1232FDA960028BA22 /* DetailHeaderProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		CE3F3D222327BF8100F03BF8 /* Network Layer */ = {
@@ -363,6 +383,7 @@
 				CE04E7E7232F81430028BA22 /* ActorViewProtocol.swift in Sources */,
 				CE04E7E1232F7E5B0028BA22 /* ActorPresenter.swift in Sources */,
 				CE3F3D3B2327CFDA00F03BF8 /* ActorViewController.swift in Sources */,
+				CE04E7EE232FA8720028BA22 /* DetailsViewProtocol.swift in Sources */,
 				848B38F6231C52E10003A186 /* HeaderVIew.swift in Sources */,
 				CE04E7E9232F8ED60028BA22 /* ActorTableViewCellProtocol.swift in Sources */,
 				84AB3BA42318279100F80850 /* MovieAppIbtikar.xcdatamodeld in Sources */,
@@ -374,10 +395,13 @@
 				848B38FA231C58590003A186 /* CustomCell.swift in Sources */,
 				848B38F8231C56490003A186 /* DetailsViewController.swift in Sources */,
 				CE0550FF2328E8210063F999 /* ActorTableViewCell.swift in Sources */,
+				CE04E7F2232FDA960028BA22 /* DetailHeaderProtocol.swift in Sources */,
+				CE04E7EC232FA8600028BA22 /* DetailsModelProtocole.swift in Sources */,
 				CE3F3D532327DCDA00F03BF8 /* Profiles.swift in Sources */,
 				CE3F3D572327DEA500F03BF8 /* DetailsModel.swift in Sources */,
 				CE3F3D552327DE8F00F03BF8 /* ActorModel.swift in Sources */,
 				CE04E7E5232F81030028BA22 /* ActorModelProtocol.swift in Sources */,
+				CE04E7F0232FA88A0028BA22 /* DetailsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

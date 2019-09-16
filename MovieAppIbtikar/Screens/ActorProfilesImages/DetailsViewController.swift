@@ -8,29 +8,33 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    
     @IBOutlet var collectionview: UICollectionView!
     var  imageURL="https://image.tmdb.org/t/p/w500/"
     var personObjPassed = Person()
     var passedImage : UIImage!
     var profilesArray:[Profiles]=[]
     var pageNumber:Int=1
-    let detailsModelObj = DetailsModel()
     let actorModelObj = ActorModel()
     var imgData :Data=Data()
     var urlString = ""
     var file_path:String=""
+      var detailsPresenter :DetailsPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionview.dataSource=self as! UICollectionViewDataSource
         self.collectionview.delegate=self as! UICollectionViewDataSource as! UICollectionViewDelegate
-        urlString = "https://api.themoviedb.org/3/person/" + "\(personObjPassed.id)" + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
-        detailsModelObj.requestURLProfile(url:urlString,completion: { _result in
-            print(_result)
-            self.profilesArray = _result
-            self.updateData()
-        })
+        
+        detailsPresenter?.viewDidLoad()
+        
+      
+        personObjPassed = (detailsPresenter?.recivedDataFromModel())!
+       print(personObjPassed.name)
+        
+        
         print(profilesArray)
     }
     
@@ -70,7 +74,7 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return profilesArray.count
+        return (detailsPresenter?.getProfilesCount())!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -81,11 +85,11 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         cell.layer.cornerRadius = 3
         
         let urlProfiles = imageURL + profilesArray[indexPath.row].file_path
-        detailsModelObj.requestImageURLProfile(url: urlProfiles,imageD: cell.collectionImage, completion:{dataResult , imageResult in
-            self.imgData = dataResult
-            cell.collectionImage = imageResult
-            
-        })
+//        detailsModelObj.requestImageURLProfile(url: urlProfiles, completion:{dataResult , imageResult in
+//            self.imgData = dataResult
+//            cell.collectionImage = imageResult
+//
+//        })
         self.getImage(actorImageView: cell.collectionImage,imageData:self.imgData  )
         
         return cell
@@ -94,7 +98,8 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionview.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderVIew", for: indexPath) as! HeaderVIew
-        header.headerLabel.text=personObjPassed.name
+        
+        detailsPresenter?.configure(header: header, for: indexPath.row)
         
         
 //        var imgString = imageURL + personObjPassed.profile_path
@@ -120,5 +125,17 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         
         
         navigationController?.pushViewController(fulVC , animated:true)    }
+    
+    func fetchingDataSuccess() {
+        DispatchQueue.main.async {
+            self.collectionview.reloadData()
+        }
+    }
+    
+    func reloadAll() {
+    }
+    
+    func navigateToUserDetailsScreen(profiles: Profiles) {
+    }
     
 }

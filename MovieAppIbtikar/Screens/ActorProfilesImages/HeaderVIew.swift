@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
-class HeaderVIew: UICollectionReusableView {
+class HeaderVIew: UICollectionReusableView,DetailsHeaderProtocol {
     
     @IBOutlet var headerImage: UIImageView!
     
     
     @IBOutlet var headerLabel: UILabel!
+    
+    func displayName(name: String) {
+        headerLabel.text = name
+    }
 }

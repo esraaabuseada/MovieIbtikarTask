@@ -7,11 +7,17 @@
 //
 
 import Foundation
-
+import  UIKit
 class ActorPresenter{
     var personsArray:[Person]=[]
     let actorModelProtocolObj: ActorModelProtocol?
     private weak var actorViewProtocolObj: ActorViewProtocol?
+    
+    private weak var detailsViewProtocolObj: DetailsViewProtocol?
+ var  detailsPresente :DetailsPresenter?
+    
+    
+    
     var pageNumber:Int=1
     var totalResults = 0
     
@@ -22,6 +28,7 @@ class ActorPresenter{
     init(viewProtocol: ActorViewProtocol,modelProtocol: ActorModelProtocol) {
         actorViewProtocolObj = viewProtocol
         actorModelProtocolObj = modelProtocol
+       
         
     }
     
@@ -59,6 +66,8 @@ class ActorPresenter{
         })
     }
    
+    
+    
     func reloadUI(){
         self.pageNumber = 1
                 self.personsArray = []

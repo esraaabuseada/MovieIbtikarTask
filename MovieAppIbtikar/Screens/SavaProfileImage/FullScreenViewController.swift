@@ -12,7 +12,7 @@ class FullScreenViewController: UIViewController {
     
     @IBOutlet var saveImage: UIImageView!
     var profilePassedObj :Profiles = Profiles()
-    let detailsModelObj = DetailsModel()
+//    let detailsModelObj = DetailsModel()
     
      var imageURL="https://image.tmdb.org/t/p/w500/"
      var imgData :Data=Data()

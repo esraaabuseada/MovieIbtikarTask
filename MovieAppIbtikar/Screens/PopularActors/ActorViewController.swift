@@ -150,9 +150,9 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         let selectedCell = actorsTableview.cellForRow(at: indexPath) as? ActorTableViewCell
         
         actorPresenter.didSelectRow(index: indexPath.row)
-//        myVC.personObjPassed = personsArray[indexPath.row]
-//        myVC.passedImage  = selectedCell?.actorImage.image
-       // navigationController?.pushViewController(myVC, animated: true)
+        
+      
+
     }
     
     
@@ -166,7 +166,10 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
     }
     
     func navigateToUserDetailsScreen(person: Person) {
-        navigationController?.pushViewController(UIViewController(), animated: true)
+        let detailsviewController = self.storyboard?.instantiateViewController(withIdentifier: "dvc")
+          as! DetailsViewController
+        detailsviewController.detailsPresenter = DetailsPresenter(viewProtocol: detailsviewController ,modelProtocol: DetailsModel(personObj: person))
+        navigationController?.pushViewController(detailsviewController, animated: true)
     }
     
     

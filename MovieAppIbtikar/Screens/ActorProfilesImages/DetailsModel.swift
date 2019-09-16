@@ -7,15 +7,22 @@
 //
 
 import Foundation
-import UIKit
 
-class DetailsModel {
+
+class DetailsModel: DetailsModelProtocol {
+    
+    
     var profiles:[Profiles]=[]
     let networkService = JsonDownload()
     var updateUIProfile : ((_ resultProfile:[Profiles])->())?
-    var updateImageProfile : ((_ resultImageProfile:Data,_ resultImageViewProfile:UIImageView)->())?
+    var updateImageProfile : ((_ resultImageProfile:Data)->())?
+    var personObjActorView = Person()
+ 
     
-    init(){
+    init(personObj:Person){
+
+        personObjActorView = personObj
+     
         networkService.onCompleteJasonProfile = { resultProfile in
             guard let json = (try? JSONSerialization.jsonObject(with: resultProfile, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
                 print("Not containing JSON")
@@ -46,18 +53,25 @@ class DetailsModel {
             {
                 let data = imageData
                 let image = imageView
-                self.updateImageProfile!(data,image)
+                self.updateImageProfile!(data)
             }}
     }
-
-    func requestURLProfile (url: String , completion: @escaping ([Profiles])  ->()){
+    
+    func requestURLProfile(url: String, completion: @escaping ([Profiles]) -> ()) {
         updateUIProfile = completion
-        networkService.downloadProfilesJson(urlJsonString: url)
-        
+         networkService.downloadProfilesJson(urlJsonString: url)
     }
-
-    func requestImageURLProfile (url: String,imageD:UIImageView,completion: @escaping (Data,UIImageView)  ->()){
+    
+    func requestImageURLProfile(url: String, completion: @escaping (Data) -> ()) {
         updateImageProfile = completion
-        networkService.get_image(url,imageDownloded: imageD)
+         //networkService.get_image(url,imageDownloded: imageD)
     }
+    
+    func recievedData()->Person{
+        print(personObjActorView)
+        
+        return personObjActorView
+    }
+    
+    
 }
