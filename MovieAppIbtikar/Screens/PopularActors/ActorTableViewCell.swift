@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ActorTableViewCell: UITableViewCell {
+class ActorTableViewCell: UITableViewCell ,ActorTableViewCellProtocol {
+   
+    
 
     @IBOutlet weak var actorImage: UIImageView!
     @IBOutlet weak var actorName: UILabel!
@@ -23,6 +25,14 @@ class ActorTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func displayName(name: String) {
+        actorName.text = name
+    }
+    
+    func displayKnowFor(knownFor: String) {
+        actorKnown.text = knownFor
     }
 
 }

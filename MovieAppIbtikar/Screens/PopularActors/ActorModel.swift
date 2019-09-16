@@ -7,13 +7,16 @@
 //
 
 import Foundation
-import UIKit
 
-class ActorModel {
+
+class ActorModel: ActorModelProtocol  {
+    
+    
     var persons:[Person]=[]
     let networkService = JsonDownload()
+    
     var updateUI : ((_ result:[Person])->())?
-    var updateImage : ((_ resultImage:Data,_ resultImageView:UIImageView)->())?
+    var updateImage : ((_ resultImage:Data)->())?
     
     init(){
         networkService.onCompleteJason = { result in
@@ -46,19 +49,19 @@ class ActorModel {
             {
                 let data = imageData
                 let image = imageView
-                self.updateImage!(data,image)
+                self.updateImage!(data)
             }}
     }
     
-    func requestURL (url: String ,pageNo:Int, completion: @escaping ([Person])  ->()){
-        
+    
+    func requestURL(url: String, pageNo: Int, completion: @escaping ([Person]) -> ()) {
         updateUI = completion
-        networkService.downloadJason(urlJsonString: url,page:pageNo )
-        
+         networkService.downloadJason(urlJsonString: url,page:pageNo )
     }
-
-    func requestImageURL (url: String,imageD:UIImageView,completion: @escaping (Data,UIImageView)  ->()){
-        updateImage = completion
-        networkService.get_image(url,imageDownloded: imageD)
+    
+    func requestImageURL(url: String, completion: @escaping (Data) -> ()) {
+//        updateImage = completion
+//        networkService.get_image(url,imageDownloded: imageD)
     }
+    
 }

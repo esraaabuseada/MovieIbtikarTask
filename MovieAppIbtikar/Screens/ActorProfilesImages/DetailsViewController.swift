@@ -97,16 +97,16 @@ class DetailsViewController: UIViewController, UICollectionViewDataSource, UICol
         header.headerLabel.text=personObjPassed.name
         
         
-        var imgString = imageURL + personObjPassed.profile_path
-        print("person" + imgString)
-        actorModelObj.requestImageURL(url:imgString,imageD: header.headerImage, completion:{dataResult , imageResult in
-            self.imgData = dataResult
-            // header.headerImage = imageResult
-            
-        })
-        print(self.imgData)
-        getImage(actorImageView: header.headerImage,imageData:self.imgData  )
-        
+//        var imgString = imageURL + personObjPassed.profile_path
+//        print("person" + imgString)
+//        actorModelObj.requestImageURL(url:imgString,imageD: header.headerImage, completion:{dataResult , imageResult in
+//            self.imgData = dataResult
+//            // header.headerImage = imageResult
+//
+//        })
+//        print(self.imgData)
+//        getImage(actorImageView: header.headerImage,imageData:self.imgData  )
+//
         return header
     }
     
