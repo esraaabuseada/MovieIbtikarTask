@@ -9,28 +9,11 @@
 import UIKit
 
 class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSource,UITableViewDelegate , UISearchBarDelegate {
-    
-    
-    
-    
+
     @IBOutlet weak var actorsTableview: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var refreshControl: UIRefreshControl!
     var actorPresenter: ActorPresenter!
-    
-    
-    
-    
-    
-    var pageNumber:Int=1
-    var totalResults = 0
-    var generalURL = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page="
-    var searchUrl = ""
-    var  imageURL="https://image.tmdb.org/t/p/w500/"
-    var personsArray:[Person]=[]
-    let actorModelObj = ActorModel()
-    var imgData :Data=Data()
-    var actorImageViw = UIImageView()
     var searchFlag = false
     
     override func viewDidLoad() {
@@ -58,12 +41,6 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
 
     }
     
-    //Update UI
-//    func updateData(){
-//        DispatchQueue.main.async {
-//            self.actorsTableview.reloadData()
-//        }
-//    }
     
     func reloadAll()
     {
@@ -113,14 +90,11 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         
         // Configure the cell...
         actorPresenter.configure(cell: cell!, for: indexPath.row)
+        
 
         //put image inside cell
 //        let urlImageString = imageURL + personsArray[indexPath.row].profile_path
-//        actorModelObj.requestImageURL(url: urlImageString, completion:{dataResult  in
-//            self.imgData = dataResult
-//
-//            
-//        })
+//        
 //
 //        self.getImage(actorImageView: cell!.actorImage,imageData:self.imgData  )
         
@@ -129,18 +103,12 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
             actorPresenter.loadMore()
             
 
-//            if(searchFlag == true){
-//                actorModelObj.requestURL(url: searchUrl,pageNo:pageNumber, completion: { _result in
-//                    self.personsArray.append(contentsOf: _result)
-//                    self.updateData()
-//                })
-//            }else{
-//
-//                actorModelObj.requestURL(url: generalURL,pageNo:pageNumber, completion: { _result in
-//                    self.personsArray.append(contentsOf: _result)
-//                    self.updateData()
-//                })
-//            }
+            if(searchFlag == true){
+                actorPresenter.viewDidLoad()
+            }else{
+
+                 actorPresenter.searchFunction()
+            }
         }
         return cell!
     }
@@ -173,52 +141,29 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //Search
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        if let searchText = searchBar.text {
-//            if(!searchText.isEmpty){
-//                self.personsArray = []
-//                pageNumber = 1
-//                searchUrl = "https://api.themoviedb.org/3/search/person?api_key=3955a9144c79cb1fca10185c95080107&language=en-US&query=\(searchText.replacingOccurrences(of:" ", with:"%20"))&include_adult=false&page="
-//                self.actorModelObj.requestURL(url: searchUrl,pageNo:self.pageNumber, completion: { _result in
-//                    self.personsArray.append(contentsOf: _result)
-//                    print(self.personsArray)
-//                    self.updateData()
-//                })
-//                searchFlag = true
-//            }
-//        }
-//    }
-//
-//
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        self.searchBar.showsCancelButton = true
-//    }
-//
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.showsCancelButton = false
-//        searchBar.text = ""
-//        searchBar.resignFirstResponder()
-//        reloadAll()
-//        actorsTableview.reloadData()
-//        searchFlag = false
-//    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            if(!searchText.isEmpty){
+                actorPresenter.searchURL(searchtext: searchText)
+                actorPresenter.searchFunction()
+                searchFlag = true
+            }
+        }
+    }
+
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        reloadAll()
+        actorsTableview.reloadData()
+        searchFlag = false
+    }
 }
 

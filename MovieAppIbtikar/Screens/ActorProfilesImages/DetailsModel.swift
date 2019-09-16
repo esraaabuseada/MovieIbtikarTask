@@ -48,11 +48,10 @@ class DetailsModel: DetailsModelProtocol {
             
         }
         
-        networkService.onCompleteImage = {imageData ,imageView in
+        networkService.onCompleteImage = {imageData  in
             if imageData != nil
             {
                 let data = imageData
-                let image = imageView
                 self.updateImageProfile!(data)
             }}
     }
@@ -64,7 +63,7 @@ class DetailsModel: DetailsModelProtocol {
     
     func requestImageURLProfile(url: String, completion: @escaping (Data) -> ()) {
         updateImageProfile = completion
-         //networkService.get_image(url,imageDownloded: imageD)
+         networkService.get_image(url)
     }
     
     func recievedData()->Person{

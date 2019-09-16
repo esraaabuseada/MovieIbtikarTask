@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import UIKit
+
 
 class JsonDownload{
-    var  actorImageView: UIImageView = UIImageView()
     var onCompleteJason: ((_ result: Data)->())?
-    var onCompleteImage: ((_ imageData: Data,_ imageView:UIImageView)->())?
+    var onCompleteImage: ((_ imageData: Data)->())?
     var onCompleteJasonProfile: ((_ resultProfile: Data)->())?
-    var onCompleteImageProfile: ((_ imageDataProfile: Data,_ imageView:UIImageView)->())?
+    var onCompleteImageProfile: ((_ imageDataProfile: Data)->())?
     
     func downloadProfilesJson(urlJsonString:String) {
         let url = URL(string:urlJsonString)
@@ -56,11 +55,11 @@ class JsonDownload{
     
     
     
-    func get_image(_ url_str:String,imageDownloded:UIImageView)
+    func get_image(_ url_str:String)
     {
         let url:URL = URL(string: url_str)!
         let session = URLSession.shared
-        let task = session.dataTask(with: url, completionHandler: {(data, response, error) in self.onCompleteImage?(data!,self.actorImageView)})
+        let task = session.dataTask(with: url, completionHandler: {(data, response, error) in self.onCompleteImage?(data!)})
         task.resume()
     }
     

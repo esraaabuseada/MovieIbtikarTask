@@ -9,12 +9,10 @@
 import UIKit
 
 class ActorTableViewCell: UITableViewCell ,ActorTableViewCellProtocol {
-   
-    
-
     @IBOutlet weak var actorImage: UIImageView!
     @IBOutlet weak var actorName: UILabel!
     @IBOutlet weak var actorKnown: UILabel!
+    var imageData :Data?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,5 +32,40 @@ class ActorTableViewCell: UITableViewCell ,ActorTableViewCellProtocol {
     func displayKnowFor(knownFor: String) {
         actorKnown.text = knownFor
     }
+    
+    func displayImage(imgData: Data) {
+        imageData = imgData
+        getImage(actorImageView: actorImage, imageData: imageData!)
+    }
+    
 
+    
+    func  getImage(actorImageView:UIImageView,imageData:Data ) {
+        if imageData != nil
+        {
+            let image = UIImage(data: imageData)
+            
+            
+            if(image != nil)
+            {
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    actorImageView.image = image
+                    actorImageView.alpha = 0
+                    
+                    
+                    UIView.animate(withDuration: 2.5, animations: {
+                        actorImageView.alpha = 1.0
+                    })
+                    
+                })
+                
+            }
+            
+        }
+        
+    }
+    
+    
 }

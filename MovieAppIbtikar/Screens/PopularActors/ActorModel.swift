@@ -44,11 +44,11 @@ class ActorModel: ActorModelProtocol  {
            
         }
         
-        networkService.onCompleteImage = {imageData ,imageView in
+        networkService.onCompleteImage = {imageData in
             if imageData != nil
             {
                 let data = imageData
-                let image = imageView
+                
                 self.updateImage!(data)
             }}
     }
@@ -60,8 +60,8 @@ class ActorModel: ActorModelProtocol  {
     }
     
     func requestImageURL(url: String, completion: @escaping (Data) -> ()) {
-//        updateImage = completion
-//        networkService.get_image(url,imageDownloded: imageD)
+        updateImage = completion
+        networkService.get_image(url)
     }
     
 }

@@ -7,20 +7,17 @@
 //
 
 import Foundation
-import  UIKit
+
 class ActorPresenter{
     var personsArray:[Person]=[]
     let actorModelProtocolObj: ActorModelProtocol?
     private weak var actorViewProtocolObj: ActorViewProtocol?
-    
     private weak var detailsViewProtocolObj: DetailsViewProtocol?
- var  detailsPresente :DetailsPresenter?
-    
-    
-    
+    var  detailsPresente :DetailsPresenter?
     var pageNumber:Int=1
     var totalResults = 0
-    
+    var imgData = Data()
+    var imgD = Data()
     var generalURL = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page="
     var searchUrl = ""
     var  imageURL="https://image.tmdb.org/t/p/w500/"
@@ -41,6 +38,15 @@ class ActorPresenter{
         })
     }
     
+    func loadImages(cell: ActorTableViewCellProtocol, for index: Int){
+        
+        
+    }
+    func getImages(urlImage: String){
+        actorModelProtocolObj!.requestImageURL(url: urlImage, completion:{dataResult  in
+            self.imgData = dataResult})
+       
+    }
     
     func getActorsCount() -> Int {
         return personsArray.count
@@ -48,12 +54,18 @@ class ActorPresenter{
     
     func configure(cell: ActorTableViewCellProtocol, for index: Int) {
         let person = personsArray[index]
+         imageURL = imageURL + person.profile_path
+        
         cell.displayName(name: person.name)
         cell.displayKnowFor(knownFor: person.known_for_department)
+         getImages(urlImage: imageURL)
+        cell.displayImage(imgData: imgData )
+        
     }
     
     func didSelectRow(index: Int) {
       let person = personsArray[index]
+   
         actorViewProtocolObj?.navigateToUserDetailsScreen(person: person)
     }
     
@@ -81,6 +93,21 @@ class ActorPresenter{
                 }
         
     
+    }
+    
+    func searchURL(searchtext: String){
+      searchUrl =  "https://api.themoviedb.org/3/search/person?api_key=3955a9144c79cb1fca10185c95080107&language=en-US&query=\(searchtext.replacingOccurrences(of:" ", with:"%20"))&include_adult=false&page="
+        
+    }
+    
+    func searchFunction(){
+        personsArray.removeAll()
+        pageNumber = 1
+        actorModelProtocolObj!.requestURL(url: searchUrl,pageNo:pageNumber, completion: { _result in
+            self.personsArray.append(contentsOf: _result)
+            print(_result)
+            self.actorViewProtocolObj?.fetchingDataSuccess()
+        })
     }
     
 }

@@ -11,4 +11,7 @@ import Foundation
 protocol ActorTableViewCellProtocol {
     func displayName(name: String)
     func displayKnowFor(knownFor: String)
+    func displayImage(imgData :Data)
+   
+    
 }
