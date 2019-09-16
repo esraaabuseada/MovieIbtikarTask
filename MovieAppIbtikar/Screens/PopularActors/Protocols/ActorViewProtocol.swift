@@ -11,6 +11,6 @@ import Foundation
 protocol ActorViewProtocol: class {
     func fetchingDataSuccess()
 //    func updateData()
-//    func reloadAll()
+   func reloadAll()
     func navigateToUserDetailsScreen(person:Person)
 }

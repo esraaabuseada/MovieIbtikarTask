@@ -43,20 +43,20 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         
         
         //Refresh
-//        actorsTableview.refreshControl = UIRefreshControl()
-//        actorsTableview.refreshControl?.attributedTitle = NSAttributedString(string: "refresh")
-//        actorsTableview.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
-//        actorsTableview.addSubview(actorsTableview.refreshControl!)
+        actorsTableview.refreshControl = UIRefreshControl()
+        actorsTableview.refreshControl?.attributedTitle = NSAttributedString(string: "refresh")
+        actorsTableview.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        actorsTableview.addSubview(actorsTableview.refreshControl!)
     }
     
     //Refressh method
-//    @objc func refresh(sender:AnyObject) {
-//
-//        reloadAll()
-//        actorsTableview.reloadData()
-//        sender.endRefreshing()
-//
-//    }
+    @objc func refresh(sender:AnyObject) {
+
+        reloadAll()
+        actorsTableview.reloadData()
+        sender.endRefreshing()
+
+    }
     
     //Update UI
 //    func updateData(){
@@ -65,19 +65,10 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
 //        }
 //    }
     
-//    func reloadAll()
-//    {
-//        self.pageNumber = 1
-//        self.personsArray = []
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.actorModelObj.requestURL(url: self.generalURL,pageNo:self.pageNumber, completion: { _result in
-//                self.personsArray.append(contentsOf: _result)
-//                print(_result)
-//                self.updateData()
-//            })
-//        }
-//
-//    }
+    func reloadAll()
+    {
+       actorPresenter.reloadUI()
+    }
     
     // sET Image
     func  getImage(actorImageView:UIImageView,imageData:Data ) {
@@ -122,9 +113,7 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         
         // Configure the cell...
         actorPresenter.configure(cell: cell!, for: indexPath.row)
-//        cell?.actorName.text=personsArray[indexPath.row].name
-//        cell?.actorKnown.text=personsArray[indexPath.row].known_for_department
-//
+
         //put image inside cell
 //        let urlImageString = imageURL + personsArray[indexPath.row].profile_path
 //        actorModelObj.requestImageURL(url: urlImageString, completion:{dataResult  in
@@ -136,8 +125,10 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
 //        self.getImage(actorImageView: cell!.actorImage,imageData:self.imgData  )
         
         //Load More
-//        if(indexPath.row == personsArray.count-3 && personsArray.count != totalResults){
-//            pageNumber = pageNumber+1
+        if(indexPath.row == actorPresenter.getActorsCount()-3 && actorPresenter.getActorsCount() != actorPresenter.totalResults){
+            actorPresenter.loadMore()
+            
+
 //            if(searchFlag == true){
 //                actorModelObj.requestURL(url: searchUrl,pageNo:pageNumber, completion: { _result in
 //                    self.personsArray.append(contentsOf: _result)
@@ -150,7 +141,7 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
 //                    self.updateData()
 //                })
 //            }
-//        }
+        }
         return cell!
     }
     

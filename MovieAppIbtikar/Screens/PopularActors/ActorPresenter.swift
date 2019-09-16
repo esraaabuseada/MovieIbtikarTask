@@ -49,6 +49,29 @@ class ActorPresenter{
       let person = personsArray[index]
         actorViewProtocolObj?.navigateToUserDetailsScreen(person: person)
     }
+    
+    func loadMore(){
+        pageNumber += pageNumber + 1
+        actorModelProtocolObj!.requestURL(url: generalURL,pageNo:pageNumber, completion: { _result in
+            self.personsArray.append(contentsOf: _result)
+            print(_result)
+            self.actorViewProtocolObj?.fetchingDataSuccess()
+        })
+    }
    
+    func reloadUI(){
+        self.pageNumber = 1
+                self.personsArray = []
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.actorModelProtocolObj!.requestURL(url: self.generalURL,pageNo:self.pageNumber, completion: { _result in
+                        self.personsArray.append(contentsOf: _result)
+                        print(_result)
+                        self.actorViewProtocolObj?.fetchingDataSuccess()
+                    })
+                   
+                }
+        
+    
+    }
     
 }
