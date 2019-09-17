@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol DetailsCollectionViewCellProtocol {
+    func displayProfilesImage(imgData :Data)
+}

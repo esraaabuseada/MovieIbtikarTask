@@ -9,5 +9,5 @@
 import Foundation
 protocol DetailsHeaderProtocol {
     func displayName(name: String)
-    //func displayKnowFor(knownFor: String)
+    func displaypersonImage(imgd: Data)
 }

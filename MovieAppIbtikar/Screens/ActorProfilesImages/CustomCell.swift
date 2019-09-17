@@ -9,11 +9,39 @@
 
 import UIKit
 
-class CustomCell: UICollectionViewCell {
-    
+class CustomCell: UICollectionViewCell,DetailsCollectionViewCellProtocol {
     @IBOutlet var collectionImage: UIImageView!
     
+    func displayProfilesImage(imgData: Data) {
+        getImage(actorImageView: collectionImage , imageData: imgData)
+    }
     
+    func  getImage(actorImageView:UIImageView,imageData:Data ) {
+        if imageData != nil
+        {
+            let image = UIImage(data: imageData)
+            
+            
+            if(image != nil)
+            {
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    actorImageView.image = image
+                    actorImageView.alpha = 0
+                    
+                    
+                    UIView.animate(withDuration: 2.5, animations: {
+                        actorImageView.alpha = 1.0
+                    })
+                    
+                })
+                
+            }
+            
+        }
+        
+    }
     
     
    

@@ -28,13 +28,11 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
         self.collectionview.dataSource=self as! UICollectionViewDataSource
         self.collectionview.delegate=self as! UICollectionViewDataSource as! UICollectionViewDelegate
         
-        detailsPresenter?.viewDidLoad()
-        
-      
-        personObjPassed = (detailsPresenter?.recivedDataFromModel())!
-       print(personObjPassed.name)
-        
-        
+        personObjPassed = (detailsPresenter!.recivedDataFromModel())
+       print(personObjPassed.id)
+        var id = "\(personObjPassed.id)"
+        detailsPresenter?.viewDidLoad(id: id)
+        profilesArray = detailsPresenter!.ProfilesArrayMethod()
         print(profilesArray)
     }
     
@@ -74,7 +72,7 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return (detailsPresenter?.getProfilesCount())!
+        return (detailsPresenter!.getProfilesCount())
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -84,13 +82,17 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
         cell.layer.borderWidth = 0.5
         cell.layer.cornerRadius = 3
         
-        let urlProfiles = imageURL + profilesArray[indexPath.row].file_path
-//        detailsModelObj.requestImageURLProfile(url: urlProfiles, completion:{dataResult , imageResult in
-//            self.imgData = dataResult
-//            cell.collectionImage = imageResult
-//
-//        })
-        self.getImage(actorImageView: cell.collectionImage,imageData:self.imgData  )
+        
+
+        
+            var arr = detailsPresenter!.ProfilesArrayMethod()
+            var p = arr[indexPath.row]
+            var urlImageString = imageURL + p.file_path
+        var data = detailsPresenter!.getProfileImages(urlImage: urlImageString)
+                print(urlImageString)
+        detailsPresenter?.configureCell(cell: cell, for: indexPath.row, profiles: p, imgData: data)
+        //        actorPresenter.configure(cell: cell!, for: indexPath.row, person: p, imgData: data)
+        
         
         return cell
     }
@@ -98,20 +100,7 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionview.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderVIew", for: indexPath) as! HeaderVIew
-        
-        detailsPresenter?.configure(header: header, for: indexPath.row)
-        
-        
-//        var imgString = imageURL + personObjPassed.profile_path
-//        print("person" + imgString)
-//        actorModelObj.requestImageURL(url:imgString,imageD: header.headerImage, completion:{dataResult , imageResult in
-//            self.imgData = dataResult
-//            // header.headerImage = imageResult
-//
-//        })
-//        print(self.imgData)
-//        getImage(actorImageView: header.headerImage,imageData:self.imgData  )
-//
+        detailsPresenter?.configureHeader(header: header, for: indexPath.row)
         return header
     }
     

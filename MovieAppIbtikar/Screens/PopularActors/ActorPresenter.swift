@@ -56,13 +56,9 @@ class ActorPresenter{
     }
     
     func configure(cell: ActorTableViewCellProtocol, for index: Int,person:Person,imgData:Data) {
-       
-        
         cell.displayName(name: person.name)
         cell.displayKnowFor(knownFor: person.known_for_department)
-
         cell.displayImage(imgData: imgData )
-        
     }
     
     func didSelectRow(index: Int) {

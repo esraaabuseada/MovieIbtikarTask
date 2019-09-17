@@ -11,6 +11,8 @@ import UIKit
 
 class HeaderVIew: UICollectionReusableView,DetailsHeaderProtocol {
     
+    
+    
     @IBOutlet var headerImage: UIImageView!
     
     
@@ -18,5 +20,37 @@ class HeaderVIew: UICollectionReusableView,DetailsHeaderProtocol {
     
     func displayName(name: String) {
         headerLabel.text = name
+    }
+    
+    func displaypersonImage(imgd: Data) {
+        getImage(actorImageView: headerImage, imageData: imgd)
+    }
+    
+    
+    func  getImage(actorImageView:UIImageView,imageData:Data ) {
+        if imageData != nil
+        {
+            let image = UIImage(data: imageData)
+            
+            
+            if(image != nil)
+            {
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    actorImageView.image = image
+                    actorImageView.alpha = 0
+                    
+                    
+                    UIView.animate(withDuration: 2.5, animations: {
+                        actorImageView.alpha = 1.0
+                    })
+                    
+                })
+                
+            }
+            
+        }
+        
     }
 }

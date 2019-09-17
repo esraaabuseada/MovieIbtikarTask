@@ -9,13 +9,16 @@
 import Foundation
 
 class DetailsPresenter {
+    var imgData = Data()
+    var imgProfilesData = Data()
     
     var detailsModelProtocolObj: DetailsModelProtocol?
     private weak var detailsViewProtocolObj: DetailsViewProtocol?
     var personObj :Person?
     var pageNumber:Int=1
-  var profilesArray:[Profiles]=[]
+  var profilesArray:[Profiles] = []
     var  imageURL="https://image.tmdb.org/t/p/w500/"
+    var id = ""
     
     init(viewProtocol: DetailsViewProtocol,modelProtocol: DetailsModelProtocol) {
        detailsViewProtocolObj = viewProtocol
@@ -31,27 +34,54 @@ class DetailsPresenter {
         return personObj!
     }
     
-    func viewDidLoad() {
+    func viewDidLoad(id :String) {
        
-       let  urlString = "https://api.themoviedb.org/3/person/" + "\(personObj?.id)" + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
+       var  urlString = "https://api.themoviedb.org/3/person/" + id + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
         
-        detailsModelProtocolObj!.requestURLProfile(url:urlString,completion: { _result in
-                    print(_result)
-                    self.profilesArray = _result
+        detailsModelProtocolObj!.requestURLProfile(url:urlString,completion: { result in
+                    print(result)
+                    self.profilesArray = result
+           
+            print(self.profilesArray)
+            
                    self.detailsViewProtocolObj!.fetchingDataSuccess()
             
                 })
     }
     
+   
     func getProfilesCount() -> Int {
         return profilesArray.count
     }
     
-    func configure(header: DetailsHeaderProtocol, for index: Int) {
-        //let profile = profilesArray[index]
-        header.displayName(name: personObj!.name)
-        
+    func ProfilesArrayMethod()-> [Profiles]{
+        return profilesArray
     }
     
+    func getProfileImages(urlImage: String)->Data{
+        detailsModelProtocolObj!.requestImageURLProfile(url: urlImage, completion:{dataResult  in
+            self.imgData = dataResult})
+print(self.imgData)
+
+        return self.imgData
+    }
+    
+    
+    func getImages(){
+        var urlImage = imageURL + personObj!.profile_path
+        detailsModelProtocolObj!.requestImageURLProfile(url: urlImage, completion:{dataResult  in
+            self.imgData = dataResult})
+    }
+    
+    func configureHeader(header: DetailsHeaderProtocol, for index: Int) {
+        //let profile = profilesArray[index]
+        getImages()
+        header.displayName(name: personObj!.name)
+        header.displaypersonImage(imgd: imgData)
+    }
+    
+    func configureCell(cell: DetailsCollectionViewCellProtocol, for index: Int,profiles: Profiles,imgData:Data) {
+        cell.displayProfilesImage(imgData: imgData)
+    }
     
 }
