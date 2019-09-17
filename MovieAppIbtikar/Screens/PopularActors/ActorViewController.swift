@@ -15,7 +15,7 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
     var refreshControl: UIRefreshControl!
     var actorPresenter: ActorPresenter!
     var searchFlag = false
-    
+     var  imageURL="https://image.tmdb.org/t/p/w500/"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.delegate = self
@@ -89,17 +89,16 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "actorCell", for: indexPath) as? ActorTableViewCell
         
         // Configure the cell...
-        actorPresenter.configure(cell: cell!, for: indexPath.row)
+        var arr = actorPresenter.PersonArrayMethod()
+        var p = arr[indexPath.row]
+        var urlImageString = imageURL + p.profile_path
+        var data = actorPresenter.getImages(urlImage: urlImageString)
+        print(data)
         
-
-        //put image inside cell
-//        let urlImageString = imageURL + personsArray[indexPath.row].profile_path
-//        
-//
-//        self.getImage(actorImageView: cell!.actorImage,imageData:self.imgData  )
+        actorPresenter.configure(cell: cell!, for: indexPath.row, person: p, imgData: data)
         
         //Load More
-        if(indexPath.row == actorPresenter.getActorsCount()-3 && actorPresenter.getActorsCount() != actorPresenter.totalResults){
+        if(indexPath.row == actorPresenter.getActorsCount()-7 && actorPresenter.getActorsCount() != actorPresenter.totalResults){
             actorPresenter.loadMore()
             
 
