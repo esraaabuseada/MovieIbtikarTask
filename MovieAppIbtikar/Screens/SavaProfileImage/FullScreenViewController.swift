@@ -8,15 +8,17 @@
 
 import UIKit
 
-class FullScreenViewController: UIViewController {
+class FullScreenViewController: UIViewController ,SaveImageViewProtocol {
+    
+    
     
     @IBOutlet var saveImage: UIImageView!
     var profilePassedObj :Profiles = Profiles()
-//    let detailsModelObj = DetailsModel()
-    
      var imageURL="https://image.tmdb.org/t/p/w500/"
-     var imgData :Data=Data()
+     var data :Data=Data()
         var img : UIImage!
+    
+    var savePresenter : SaveImagePresenter!
 
     
     @IBAction func SaveImage(_ sender: UIButton) {
@@ -30,12 +32,37 @@ class FullScreenViewController: UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+     profilePassedObj = savePresenter.recivedDataFromModel()
+        print(profilePassedObj.file_path)
         
-        
-       saveImage.image = img
+      fetchingDataSuccess()
+       
+    
     }
+    
+    
+    
+    func fetchingDataSuccess() {
+        imageURL = imageURL + profilePassedObj.file_path
+        savePresenter.getProfileImages(urlImage: imageURL)
+        //imgData = savePresenter.getProfileImages(urlImage: imageURL)
+        
+    
+        
+        
+    }
+    
+    func getImageDta(imgD: Data) {
+        data = imgD
+        if data != nil {
+       saveImage.image = UIImage(data: data)
+    }
+    }
+    
     
     func  getImage(actorImageView:UIImageView,imageData:Data ) {
         if imageData != nil

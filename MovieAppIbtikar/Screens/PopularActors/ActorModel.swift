@@ -26,8 +26,8 @@ class ActorModel: ActorModelProtocol  {
             }
             
             do{
-                let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
                 self.persons = []
+                let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
                 for p in personsArray{
                     let personObj=Person()
                     personObj.name=p["name"] as? String ?? ""

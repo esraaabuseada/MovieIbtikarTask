@@ -10,8 +10,6 @@ import Foundation
 
 
 class DetailsModel: DetailsModelProtocol {
-    
-    
     var profiles:[Profiles]=[]
     let networkService = JsonDownload()
     var updateUIProfile : ((_ resultProfile:[Profiles])->())?

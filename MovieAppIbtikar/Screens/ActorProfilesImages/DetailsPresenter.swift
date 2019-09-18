@@ -49,7 +49,13 @@ class DetailsPresenter {
                 })
     }
     
-   
+    func didSelectRow(index: Int) {
+        let profiless = profilesArray[index]
+        
+        detailsViewProtocolObj?.navigateToUserDetailsScreen(profiles: profiless)
+    }
+    
+    
     func getProfilesCount() -> Int {
         return profilesArray.count
     }

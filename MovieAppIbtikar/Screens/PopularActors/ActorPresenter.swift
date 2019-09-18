@@ -18,9 +18,11 @@ class ActorPresenter{
     var totalResults = 0
     var imgData = Data()
     var imgD = Data()
+    var personObj = Person()
     var generalURL = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page="
     var searchUrl = ""
     var  imageURL="https://image.tmdb.org/t/p/w500/"
+    
     
     init(viewProtocol: ActorViewProtocol,modelProtocol: ActorModelProtocol) {
         actorViewProtocolObj = viewProtocol
@@ -38,17 +40,21 @@ class ActorPresenter{
         })
     }
     
-    func PersonArrayMethod()-> [Person]{
-        return personsArray
+    func PersonObjMethod(index:Int)->Person{
+        personObj = personsArray[index]
+        
+        return personObj
     }
     
 
-    func getImages(urlImage: String)->Data{
+    func getImages(urlImage: String){
         actorModelProtocolObj!.requestImageURL(url: urlImage, completion:{dataResult  in
-            self.imgData = dataResult})
+            self.imgData = dataResult
+            self.actorViewProtocolObj?.getImageDta(imgD: self.imgData)
+           
+        })
         
-        
-        return self.imgData
+       
     }
 
     func getActorsCount() -> Int {
@@ -74,6 +80,8 @@ class ActorPresenter{
             print(_result)
             self.actorViewProtocolObj?.fetchingDataSuccess()
         })
+        
+        
     }
    
     
@@ -99,7 +107,7 @@ class ActorPresenter{
     }
     
     func searchFunction(){
-        personsArray.removeAll()
+      //  personsArray.removeAll()
         pageNumber = 1
         actorModelProtocolObj!.requestURL(url: searchUrl,pageNo:pageNumber, completion: { _result in
             self.personsArray.append(contentsOf: _result)

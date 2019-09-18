@@ -9,6 +9,8 @@
 import UIKit
 
 class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSource,UITableViewDelegate , UISearchBarDelegate {
+    
+    
 
     @IBOutlet weak var actorsTableview: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -16,6 +18,10 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
     var actorPresenter: ActorPresenter!
     var searchFlag = false
      var  imageURL="https://image.tmdb.org/t/p/w500/"
+    var data = Data()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchBar.delegate = self
@@ -89,24 +95,26 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "actorCell", for: indexPath) as? ActorTableViewCell
         
         // Configure the cell...
-        var arr = actorPresenter.PersonArrayMethod()
-        var p = arr[indexPath.row]
-        var urlImageString = imageURL + p.profile_path
-        var data = actorPresenter.getImages(urlImage: urlImageString)
-        print(data)
+        var obj = actorPresenter.PersonObjMethod(index: indexPath.row)
+      
+        var urlImageString = imageURL + obj.profile_path
         
-        actorPresenter.configure(cell: cell!, for: indexPath.row, person: p, imgData: data)
+         actorPresenter.getImages(urlImage: urlImageString)
+         actorPresenter.configure(cell: cell!, for: indexPath.row, person: obj, imgData: data)
         
         //Load More
         if(indexPath.row == actorPresenter.getActorsCount()-7 && actorPresenter.getActorsCount() != actorPresenter.totalResults){
+            
             actorPresenter.loadMore()
+           
             
 
-            if(searchFlag == true){
+            if(searchFlag == false){
                 actorPresenter.viewDidLoad()
             }else{
 
                  actorPresenter.searchFunction()
+               
             }
         }
         return cell!
@@ -131,6 +139,11 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         }
         
     }
+    
+    func getImageDta(imgD: Data) {
+        data = imgD
+    }
+    
     
     func navigateToUserDetailsScreen(person: Person) {
         let detailsviewController = self.storyboard?.instantiateViewController(withIdentifier: "dvc")

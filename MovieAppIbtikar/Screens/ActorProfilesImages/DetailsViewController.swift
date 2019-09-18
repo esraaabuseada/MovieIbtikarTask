@@ -21,7 +21,7 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
     var imgData :Data=Data()
     var urlString = ""
     var file_path:String=""
-      var detailsPresenter :DetailsPresenter?
+      var detailsPresenter :DetailsPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,12 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
        print(personObjPassed.id)
         var id = "\(personObjPassed.id)"
         detailsPresenter?.viewDidLoad(id: id)
-        profilesArray = detailsPresenter!.ProfilesArrayMethod()
-        print(profilesArray)
+        
+        guard  detailsPresenter.ProfilesArrayMethod() != nil else {
+            print("no profilessss")
+            return
+        }
+       
     }
     
     func updateData(){
@@ -85,8 +89,10 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
         
 
         
-            var arr = detailsPresenter!.ProfilesArrayMethod()
-            var p = arr[indexPath.row]
+     
+        profilesArray = detailsPresenter.ProfilesArrayMethod()
+        print("detaaaiiilss profiles" + "\(profilesArray)")
+            var p = profilesArray[indexPath.row]
             var urlImageString = imageURL + p.file_path
         var data = detailsPresenter!.getProfileImages(urlImage: urlImageString)
                 print(urlImageString)
@@ -106,14 +112,8 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let fulVC = storyboard?.instantiateViewController(withIdentifier: "fulVC") as! FullScreenViewController
-        
-        let selectedCell = collectionView.cellForItem(at: indexPath) as? CustomCell
-        
-        fulVC.img = selectedCell?.collectionImage.image
-        
-        
-        navigationController?.pushViewController(fulVC , animated:true)    }
+       detailsPresenter.didSelectRow(index: indexPath.row)
+    }
     
     func fetchingDataSuccess() {
         DispatchQueue.main.async {
@@ -125,6 +125,13 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
     }
     
     func navigateToUserDetailsScreen(profiles: Profiles) {
+        let saveImageviewController = self.storyboard?.instantiateViewController(withIdentifier: "fulVC")
+            as! FullScreenViewController
+        saveImageviewController.savePresenter = SaveImagePresenter(viewProtocol: saveImageviewController, modelProtocol: SaveImageModel(profileObj: profiles))
+        navigationController?.pushViewController(saveImageviewController, animated: true)
     }
+    
+    
+    
     
 }

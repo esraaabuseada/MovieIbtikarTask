@@ -59,7 +59,9 @@ class JsonDownload{
     {
         let url:URL = URL(string: url_str)!
         let session = URLSession.shared
-        let task = session.dataTask(with: url, completionHandler: {(data, response, error) in self.onCompleteImage?(data!)})
+        let task = session.dataTask(with: url, completionHandler: {(data, response, error) in
+            
+            self.onCompleteImage?(data!)})
         task.resume()
     }
     

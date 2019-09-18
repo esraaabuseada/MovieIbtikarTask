@@ -13,4 +13,5 @@ protocol ActorViewProtocol: class {
 //    func updateData()
    func reloadAll()
     func navigateToUserDetailsScreen(person:Person)
+    func getImageDta(imgD: Data)
 }
