@@ -54,11 +54,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "590502456.357373"
+            timestampString = "590946794.107771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
@@ -182,7 +182,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Network Layer/JsonDownload.swift"
@@ -234,7 +234,7 @@
                   moduleName = "MovieAppIbtikar"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/user/Developer/MovieIbtikarTask/MovieAppIbtikar/Screens/SavaProfileImage/SaveImagePresenter.swift"
-                  timestampString = "590502330.980253"
+                  timestampString = "590946794.141668"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
@@ -249,7 +249,7 @@
                   moduleName = "MovieAppIbtikar"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/user/Developer/MovieIbtikarTask/MovieAppIbtikar/Screens/SavaProfileImage/SaveImagePresenter.swift"
-                  timestampString = "590502330.981734"
+                  timestampString = "590946794.1433589"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"

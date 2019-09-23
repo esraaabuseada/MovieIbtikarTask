@@ -8,3 +8,8 @@ target 'MovieAppIbtikar' do
   use_frameworks!
   pod 'SDWebImage', '~> 5.0'
 end
+
+'
+target 'MovieAppIbtikar' do
+ pod 'SDWebImage', '~> 5.0'
+end
