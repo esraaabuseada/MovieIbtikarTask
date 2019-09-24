@@ -89,16 +89,14 @@ class ActorPresenter{
     func reloadUI(){
         self.pageNumber = 1
                 self.personsArray = []
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        
                     self.actorModelProtocolObj!.requestURL(url: self.generalURL,pageNo:self.pageNumber, completion: { _result in
                         self.personsArray.append(contentsOf: _result)
                         print(_result)
                         self.actorViewProtocolObj?.fetchingDataSuccess()
                     })
                    
-                }
-        
-    
+               
     }
     
     func searchURL(searchtext: String){

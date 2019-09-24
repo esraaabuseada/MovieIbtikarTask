@@ -14,10 +14,10 @@ class  TestModel: ActorModelProtocol {
     var updateUI : ((_ result:[Person])->())?
     
      var persons:[Person]=[]
-    
+    var path = ""
     func requestURL(url: String, pageNo: Int, completion: @escaping ([Person]) -> ()) {
         print("urllllll" + url)
-        let data = try! Data(contentsOf: URL(fileURLWithPath: url), options: .alwaysMapped)
+        let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
         guard let json = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
             print("Not containing JSON")
             return
