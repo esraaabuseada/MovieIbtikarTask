@@ -46,16 +46,16 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
     /// Closure that decides if/how a request should be stubbed.
     public typealias StubClosure = (Target) -> Moya.StubBehavior
 
-    open let endpointClosure: EndpointClosure
-    open let requestClosure: RequestClosure
-    open let stubClosure: StubClosure
-    open let manager: Manager
+    public let endpointClosure: EndpointClosure
+    public let requestClosure: RequestClosure
+    public let stubClosure: StubClosure
+    public let manager: Manager
 
     /// A list of plugins
     /// e.g. for logging, network activity indicator or credentials
-    open let plugins: [PluginType]
+    public let plugins: [PluginType]
 
-    open let trackInflights: Bool
+    public let trackInflights: Bool
 
     open internal(set) var inflightRequests: [Endpoint<Target>: [Moya.Completion]] = [:]
 

@@ -39,9 +39,8 @@
 		CE3F3D532327DCDA00F03BF8 /* Profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D522327DCDA00F03BF8 /* Profiles.swift */; };
 		CE3F3D552327DE8F00F03BF8 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */; };
 		CE3F3D572327DEA500F03BF8 /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */; };
-		CE8054FE234CA6AF00B3C4D2 /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8054FD234CA6AF00B3C4D2 /* Json4Swift_Base.swift */; };
+		CE8054FE234CA6AF00B3C4D2 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8054FD234CA6AF00B3C4D2 /* ApiResponse.swift */; };
 		CE805501234CA6BC00B3C4D2 /* Known_for.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8054FF234CA6BC00B3C4D2 /* Known_for.swift */; };
-		CE805502234CA6BC00B3C4D2 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE805500234CA6BC00B3C4D2 /* Results.swift */; };
 		CED7ECB42332256C00904EE4 /* SaveImageModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7ECB32332256C00904EE4 /* SaveImageModelProtocol.swift */; };
 		CED7ECB62332258100904EE4 /* SaveImageViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7ECB52332258100904EE4 /* SaveImageViewProtocol.swift */; };
 		CED7ECB82332260D00904EE4 /* SaveImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7ECB72332260D00904EE4 /* SaveImageModel.swift */; };
@@ -113,9 +112,8 @@
 		CE3F3D522327DCDA00F03BF8 /* Profiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profiles.swift; sourceTree = "<group>"; };
 		CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
-		CE8054FD234CA6AF00B3C4D2 /* Json4Swift_Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Json4Swift_Base.swift; path = ../../../../Downloads/codegen_5d9c650d553db/Json4Swift_Base.swift; sourceTree = "<group>"; };
+		CE8054FD234CA6AF00B3C4D2 /* ApiResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiResponse.swift; path = ../../../../Downloads/codegen_5d9c650d553db/ApiResponse.swift; sourceTree = "<group>"; };
 		CE8054FF234CA6BC00B3C4D2 /* Known_for.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Known_for.swift; path = ../../../../Downloads/codegen_5d9c650d553db/Known_for.swift; sourceTree = "<group>"; };
-		CE805500234CA6BC00B3C4D2 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Results.swift; path = ../../../../Downloads/codegen_5d9c650d553db/Results.swift; sourceTree = "<group>"; };
 		CED7ECB32332256C00904EE4 /* SaveImageModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageModelProtocol.swift; sourceTree = "<group>"; };
 		CED7ECB52332258100904EE4 /* SaveImageViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageViewProtocol.swift; sourceTree = "<group>"; };
 		CED7ECB72332260D00904EE4 /* SaveImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveImageModel.swift; sourceTree = "<group>"; };
@@ -297,8 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8054FF234CA6BC00B3C4D2 /* Known_for.swift */,
-				CE805500234CA6BC00B3C4D2 /* Results.swift */,
-				CE8054FD234CA6AF00B3C4D2 /* Json4Swift_Base.swift */,
+				CE8054FD234CA6AF00B3C4D2 /* ApiResponse.swift */,
 				CE3F3D502327DC7500F03BF8 /* Person.swift */,
 				CE3F3D522327DCDA00F03BF8 /* Profiles.swift */,
 			);
@@ -556,7 +553,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE04E7E7232F81430028BA22 /* ActorViewProtocol.swift in Sources */,
-				CE805502234CA6BC00B3C4D2 /* Results.swift in Sources */,
 				CE04E7E1232F7E5B0028BA22 /* ActorPresenter.swift in Sources */,
 				CED7ECB42332256C00904EE4 /* SaveImageModelProtocol.swift in Sources */,
 				CE3F3D3B2327CFDA00F03BF8 /* ActorViewController.swift in Sources */,
@@ -577,7 +573,7 @@
 				CE04E7F2232FDA960028BA22 /* DetailHeaderProtocol.swift in Sources */,
 				CE04E7EC232FA8600028BA22 /* DetailsModelProtocole.swift in Sources */,
 				CED7ECBA2332289900904EE4 /* SaveImagePresenter.swift in Sources */,
-				CE8054FE234CA6AF00B3C4D2 /* Json4Swift_Base.swift in Sources */,
+				CE8054FE234CA6AF00B3C4D2 /* ApiResponse.swift in Sources */,
 				CE3F3D532327DCDA00F03BF8 /* Profiles.swift in Sources */,
 				CE3F3D572327DEA500F03BF8 /* DetailsModel.swift in Sources */,
 				CED7ECB82332260D00904EE4 /* SaveImageModel.swift in Sources */,

@@ -7,9 +7,10 @@
 //
 
 import Foundation
-
+import  Alamofire
 
 class JsonDownload{
+    
     var onCompleteJason: ((_ result: Data)->())?
     var onCompleteImage: ((_ imageData: Data)->())?
     var onCompleteJasonProfile: ((_ resultProfile: Data)->())?
@@ -34,23 +35,21 @@ class JsonDownload{
     
     
     func downloadJason(urlJsonString:String,page:Int) {
-        let urlString=urlJsonString+"\(page)"
-        let url = URL(string:urlString)
-        let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
+        Alamofire.request(urlJsonString, method: .get,parameters:["page" : page] ).responseJSON{ (response) in
+            print(response)
             
-            guard error == nil else {
-                print("returning error")
-                return
-            }
+                guard let data = response.data
+                    
+                    else {return}
+            self.onCompleteJason?(response.data!)
+               
+                
             
-            guard let content = data else {
-                print("not returning data")
-                return
-            }
             
-            self.onCompleteJason?(data!)
         }
-        task.resume()
+        
+        
+        
     }
     
     

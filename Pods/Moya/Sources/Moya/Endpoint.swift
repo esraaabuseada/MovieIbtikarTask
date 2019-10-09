@@ -17,11 +17,11 @@ public enum EndpointSampleResponse {
 open class Endpoint<Target> {
     public typealias SampleResponseClosure = () -> EndpointSampleResponse
 
-    open let url: String
-    open let sampleResponseClosure: SampleResponseClosure
-    open let method: Moya.Method
-    open let task: Task
-    open let httpHeaderFields: [String: String]?
+    public let url: String
+    public let sampleResponseClosure: SampleResponseClosure
+    public let method: Moya.Method
+    public let task: Task
+    public let httpHeaderFields: [String: String]?
 
     /// Main initializer for `Endpoint`.
     public init(url: String,

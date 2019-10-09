@@ -97,7 +97,7 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
         // Configure the cell...
         var obj = actorPresenter.PersonObjMethod(index: indexPath.row)
       
-        var urlImageString = imageURL + obj.profile_path
+        var urlImageString = imageURL + obj.profile_path!
         
          actorPresenter.getImages(urlImage: urlImageString)
          actorPresenter.configure(cell: cell!, for: indexPath.row, person: obj, imgData: data)

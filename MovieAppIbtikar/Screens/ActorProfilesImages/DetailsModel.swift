@@ -14,7 +14,7 @@ class DetailsModel: DetailsModelProtocol {
     let networkService = JsonDownload()
     var updateUIProfile : ((_ resultProfile:[Profiles])->())?
     var updateImageProfile : ((_ resultImageProfile:Data)->())?
-    var personObjActorView = Person()
+    var personObjActorView = Person(id: 18918,profile_path: "/kuqFzlYMc2IrsOyPznMd1FroeGq.jpg",name: "Dwayne Johnson")
  
     
     init(personObj:Person){

@@ -12,7 +12,7 @@ import Foundation
 class ActorModel: ActorModelProtocol  {
     
     
-    var persons:[Person]=[]
+    var persons = [Person]()
     let networkService = JsonDownload()
     
     var updateUI : ((_ result:[Person])->())?
@@ -20,28 +20,24 @@ class ActorModel: ActorModelProtocol  {
     
     init(){
         networkService.onCompleteJason = { result in
-            guard let json = (try? JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-                print("Not containing JSON")
-                return
-            }
+            print("eeee"+"\(result)")
             
             do{
                 self.persons = []
-                let personsArray = json["results"] as? [Dictionary<String,Any>] ?? []
-                for p in personsArray{
-                    let personObj=Person()
-                    personObj.name=p["name"] as? String ?? ""
-                    personObj.known_for_department=p["known_for_department"] as? String ?? ""
-                    personObj.profile_path=p["profile_path"] as? String ?? ""
-                    personObj.id=p["id"] as? Int ?? 0
-                    self.persons.append(personObj)
-                }
-    
-                self.updateUI!(self.persons)
+                //created the json decoder
+                let decoder = JSONDecoder()
                 
+                //using the array to put values
+              
+           let pp = try decoder.decode(ApiResponse.self, from: result)
+                self.persons = pp.results!
+                
+                
+                self.updateUI?(self.persons)
+                
+            }catch let err{
+                print(err)
             }
-                
-           
         }
         
         networkService.onCompleteImage = {imageData in
@@ -50,7 +46,10 @@ class ActorModel: ActorModelProtocol  {
                 let data = imageData
                 
                 self.updateImage!(data)
-            }}
+      }}
+        
+        
+        
     }
     
     

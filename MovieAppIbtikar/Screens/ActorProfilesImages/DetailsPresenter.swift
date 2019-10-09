@@ -74,7 +74,7 @@ print(self.imgData)
     
     
     func getImages(){
-        var urlImage = imageURL + personObj!.profile_path
+        var urlImage = imageURL + personObj!.profile_path!
         detailsModelProtocolObj!.requestImageURLProfile(url: urlImage, completion:{dataResult  in
             self.imgData = dataResult})
     }
@@ -82,7 +82,7 @@ print(self.imgData)
     func configureHeader(header: DetailsHeaderProtocol, for index: Int) {
         //let profile = profilesArray[index]
         getImages()
-        header.displayName(name: personObj!.name)
+        header.displayName(name: personObj!.name!)
         header.displaypersonImage(imgd: imgData)
     }
     

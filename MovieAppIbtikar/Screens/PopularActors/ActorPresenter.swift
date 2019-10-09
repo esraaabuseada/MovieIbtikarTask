@@ -18,7 +18,9 @@ class ActorPresenter{
     var totalResults = 0
     var imgData = Data()
     var imgD = Data()
-    var personObj = Person()
+    
+  
+    
     var generalURL = "https://api.themoviedb.org/3/person/popular?api_key=cb8effcf3a0b27a05a7daba0064a32e1&page="
     var searchUrl = ""
     var  imageURL="https://image.tmdb.org/t/p/w500/"
@@ -41,7 +43,7 @@ class ActorPresenter{
     }
     
     func PersonObjMethod(index:Int)->Person{
-        personObj = personsArray[index]
+       var  personObj = personsArray[index]
         
         return personObj
     }
@@ -62,8 +64,7 @@ class ActorPresenter{
     }
     
     func configure(cell: ActorTableViewCellProtocol, for index: Int,person:Person,imgData:Data) {
-        cell.displayName(name: person.name)
-        cell.displayKnowFor(knownFor: person.known_for_department)
+        cell.displayName(name: person.name!)
         cell.displayImage(imgData: imgData )
     }
     
