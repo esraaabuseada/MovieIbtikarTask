@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ActorTableViewCell: UITableViewCell ,ActorTableViewCellProtocol {
     @IBOutlet weak var actorImage: UIImageView!
     @IBOutlet weak var actorName: UILabel!
     @IBOutlet weak var actorKnown: UILabel!
+    
+     let placeHolderImage = UIImage(named: "AppIcon")
     var imageData :Data?
     
     override func awakeFromNib() {
@@ -33,9 +36,13 @@ class ActorTableViewCell: UITableViewCell ,ActorTableViewCellProtocol {
         actorKnown.text = knownFor
     }
     
-    func displayImage(imgData: Data) {
-        imageData = imgData
-        getImage(actorImageView: actorImage, imageData: imageData!)
+    func displayImage(imgProfile: String) {
+        var  imageURL="https://image.tmdb.org/t/p/w500/" + imgProfile
+        let url:URL = URL(string: imageURL)!
+        actorImage.sd_setImage(with: url, placeholderImage: placeHolderImage)
+        
+//        imageData = imgData
+//        getImage(actorImageView: actorImage, imageData: imageData!)
     }
     
 

@@ -10,5 +10,5 @@ import Foundation
 
 protocol ActorModelProtocol: class {
     func requestURL (url: String ,pageNo:Int, completion: @escaping ([Person])  ->())
-    func requestImageURL (url: String,completion: @escaping (Data)  ->())
+   // func requestImageURL (url: String,completion: @escaping (Data)  ->())
 }

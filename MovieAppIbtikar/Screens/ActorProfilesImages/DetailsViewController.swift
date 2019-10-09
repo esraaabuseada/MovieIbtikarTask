@@ -30,8 +30,8 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
         
         personObjPassed = (detailsPresenter!.recivedDataFromModel())
        print(personObjPassed.id)
-        var id = "\(personObjPassed.id)"
-        detailsPresenter?.viewDidLoad(id: id)
+        var id = personObjPassed.id
+        detailsPresenter?.viewDidLoad(id: id!)
         
         guard  detailsPresenter.ProfilesArrayMethod() != nil else {
             print("no profilessss")
@@ -93,10 +93,10 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
         profilesArray = detailsPresenter.ProfilesArrayMethod()
         print("detaaaiiilss profiles" + "\(profilesArray)")
             var p = profilesArray[indexPath.row]
-            var urlImageString = imageURL + p.file_path
+        var urlImageString = imageURL + p.file_path!
         var data = detailsPresenter!.getProfileImages(urlImage: urlImageString)
                 print(urlImageString)
-        detailsPresenter?.configureCell(cell: cell, for: indexPath.row, profiles: p, imgData: data)
+        detailsPresenter?.configureCell(cell: cell, for: indexPath.row, profiles: p)
         //        actorPresenter.configure(cell: cell!, for: indexPath.row, person: p, imgData: data)
         
         

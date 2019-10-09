@@ -14,7 +14,7 @@ class SaveImageModel: SaveImageModelProtocol {
     var profiles:[Profiles]=[]
     let networkService = JsonDownload()
     var updateImageProfile : ((_ resultImageProfile:Data)->())?
-    var profileDetailsViewObj = Profiles()
+    var profileDetailsViewObj = Profiles( file_path: "/n432vxKiMpgdCmOjq7UX6Gatisa.jpg")
    
     
     init(profileObj: Profiles){

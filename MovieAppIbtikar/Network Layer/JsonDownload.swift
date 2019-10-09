@@ -15,25 +15,30 @@ class JsonDownload{
     var onCompleteImage: ((_ imageData: Data)->())?
     var onCompleteJasonProfile: ((_ resultProfile: Data)->())?
     var onCompleteImageProfile: ((_ imageDataProfile: Data)->())?
+    var networkManager = NetworkManager()
     
-    func downloadProfilesJson(urlJsonString:String) {
-        let url = URL(string:urlJsonString)
-        let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
-            guard error == nil else {
-                print("returning error")
-                return
-            }
-            guard let content = data else {
-                print("not returning data")
-                return
-            }
+    func getProfileResponse(id:Int){
+        networkManager.appNetworkProvider.request(.popular(id: id)) { (result) in
             
-            self.onCompleteJasonProfile?(data!)
+            switch result{
+            case let .success(moyaResponse) :
+                
+                let data = moyaResponse.data
+                self.onCompleteJasonProfile?(data)
+                
+            case .failure(let error):
+                print(error)
         }
-        task.resume()
+        
+        
     }
     
+    }
+   
     
+    
+    
+    //getResponse.... namingcon
     func downloadJason(urlJsonString:String,page:Int) {
         Alamofire.request(urlJsonString, method: .get,parameters:["page" : page] ).responseJSON{ (response) in
             print(response)

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import  Moya
 class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSource,UITableViewDelegate , UISearchBarDelegate {
     
     
@@ -24,6 +24,9 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         self.searchBar.delegate = self
         actorPresenter = ActorPresenter(viewProtocol: self, modelProtocol: ActorModel())
         actorPresenter.viewDidLoad()
@@ -99,8 +102,8 @@ class ActorViewController: UIViewController,ActorViewProtocol,UITableViewDataSou
       
         var urlImageString = imageURL + obj.profile_path!
         
-         actorPresenter.getImages(urlImage: urlImageString)
-         actorPresenter.configure(cell: cell!, for: indexPath.row, person: obj, imgData: data)
+        // actorPresenter.getImages(urlImage: urlImageString)
+         actorPresenter.configure(cell: cell!, for: indexPath.row, person: obj)
         
         //Load More
         if(indexPath.row == actorPresenter.getActorsCount()-7 && actorPresenter.getActorsCount() != actorPresenter.totalResults){

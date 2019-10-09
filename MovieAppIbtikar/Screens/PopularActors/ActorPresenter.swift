@@ -49,23 +49,23 @@ class ActorPresenter{
     }
     
 
-    func getImages(urlImage: String){
-        actorModelProtocolObj!.requestImageURL(url: urlImage, completion:{dataResult  in
-            self.imgData = dataResult
-            self.actorViewProtocolObj?.getImageDta(imgD: self.imgData)
-           
-        })
-        
-       
-    }
+//    func getImages(urlImage: String){
+//        actorModelProtocolObj!.requestImageURL(url: urlImage, completion:{dataResult  in
+//            self.imgData = dataResult
+//            self.actorViewProtocolObj?.getImageDta(imgD: self.imgData)
+//
+//        })
+//
+//
+//    }
 
     func getActorsCount() -> Int {
         return personsArray.count
     }
     
-    func configure(cell: ActorTableViewCellProtocol, for index: Int,person:Person,imgData:Data) {
+    func configure(cell: ActorTableViewCellProtocol, for index: Int,person:Person) {
         cell.displayName(name: person.name!)
-        cell.displayImage(imgData: imgData )
+        cell.displayImage(imgProfile: person.profile_path!)
     }
     
     func didSelectRow(index: Int) {

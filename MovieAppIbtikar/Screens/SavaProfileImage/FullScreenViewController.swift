@@ -13,7 +13,7 @@ class FullScreenViewController: UIViewController ,SaveImageViewProtocol {
     
     
     @IBOutlet var saveImage: UIImageView!
-    var profilePassedObj :Profiles = Profiles()
+    var profilePassedObj :Profiles = Profiles(file_path: "\n432vxKiMpgdCmOjq7UX6Gatisa.jpg")
      var imageURL="https://image.tmdb.org/t/p/w500/"
      var data :Data=Data()
         var img : UIImage!
@@ -47,7 +47,7 @@ class FullScreenViewController: UIViewController ,SaveImageViewProtocol {
     
     
     func fetchingDataSuccess() {
-        imageURL = imageURL + profilePassedObj.file_path
+        imageURL = imageURL + profilePassedObj.file_path!
         savePresenter.getProfileImages(urlImage: imageURL)
         //imgData = savePresenter.getProfileImages(urlImage: imageURL)
         

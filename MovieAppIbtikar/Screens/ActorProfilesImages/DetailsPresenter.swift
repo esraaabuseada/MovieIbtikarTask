@@ -34,19 +34,27 @@ class DetailsPresenter {
         return personObj!
     }
     
-    func viewDidLoad(id :String) {
+    func viewDidLoad(id :Int) {
        
-       var  urlString = "https://api.themoviedb.org/3/person/" + id + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
+    //   var  urlString = "https://api.themoviedb.org/3/person/" + id + "/images?api_key=cb8effcf3a0b27a05a7daba0064a32e1"
+        detailsModelProtocolObj?.requestURLProfile(id: id, completion: { (resultArray) in
+            print(resultArray)
+                                self.profilesArray = resultArray
+            
+                        print(self.profilesArray)
+            
+                               self.detailsViewProtocolObj!.fetchingDataSuccess()
+        })
         
-        detailsModelProtocolObj!.requestURLProfile(url:urlString,completion: { result in
-                    print(result)
-                    self.profilesArray = result
-           
-            print(self.profilesArray)
-            
-                   self.detailsViewProtocolObj!.fetchingDataSuccess()
-            
-                })
+//        detailsModelProtocolObj!.requestURLProfile(url:urlString,personId:id,completion: { result in
+//                    print(result)
+//                    self.profilesArray = result
+//
+//            print(self.profilesArray)
+//
+//                   self.detailsViewProtocolObj!.fetchingDataSuccess()
+//
+//                })
     }
     
     func didSelectRow(index: Int) {
@@ -86,8 +94,8 @@ print(self.imgData)
         header.displaypersonImage(imgd: imgData)
     }
     
-    func configureCell(cell: DetailsCollectionViewCellProtocol, for index: Int,profiles: Profiles,imgData:Data) {
-        cell.displayProfilesImage(imgData: imgData)
+    func configureCell(cell: DetailsCollectionViewCellProtocol, for index: Int,profiles: Profiles) {
+        cell.displayProfilesImage(image: profiles.file_path!)
     }
     
 }

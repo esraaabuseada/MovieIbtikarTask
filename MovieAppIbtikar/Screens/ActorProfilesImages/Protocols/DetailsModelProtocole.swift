@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DetailsModelProtocol: class {
-   func requestURLProfile (url: String , completion: @escaping ([Profiles])  ->())
+    func requestURLProfile (id:Int, completion: @escaping ([Profiles])  ->())
     func requestImageURLProfile (url: String,completion: @escaping (Data)  ->())
     func recievedData()->Person
 }

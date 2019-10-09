@@ -19,6 +19,7 @@ class ActorModel: ActorModelProtocol  {
     var updateImage : ((_ resultImage:Data)->())?
     
     init(){
+        
         networkService.onCompleteJason = { result in
             print("eeee"+"\(result)")
             
@@ -40,13 +41,13 @@ class ActorModel: ActorModelProtocol  {
             }
         }
         
-        networkService.onCompleteImage = {imageData in
-            if imageData != nil
-            {
-                let data = imageData
-                
-                self.updateImage!(data)
-      }}
+//        networkService.onCompleteImage = {imageData in
+//            if imageData != nil
+//            {
+//                let data = imageData
+//
+//                self.updateImage!(data)
+//      }}
         
         
         
@@ -58,9 +59,9 @@ class ActorModel: ActorModelProtocol  {
          networkService.downloadJason(urlJsonString: url,page:pageNo )
     }
     
-    func requestImageURL(url: String, completion: @escaping (Data) -> ()) {
-        updateImage = completion
-        networkService.get_image(url)
-    }
+//    func requestImageURL(url: String, completion: @escaping (Data) -> ()) {
+//        updateImage = completion
+//        networkService.get_image(url)
+//    }
     
 }

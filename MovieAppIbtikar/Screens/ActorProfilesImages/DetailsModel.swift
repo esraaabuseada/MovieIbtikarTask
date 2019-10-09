@@ -22,29 +22,33 @@ class DetailsModel: DetailsModelProtocol {
         personObjActorView = personObj
      
         networkService.onCompleteJasonProfile = { resultProfile in
-            guard let json = (try? JSONSerialization.jsonObject(with: resultProfile, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-                print("Not containing JSON")
-                return
-                
-            }
+          
             
             do{
+                self.profiles = []
+                //created the json decoder
+                let decoder = JSONDecoder()
                 
-             
-                let profilesArray = json["profiles"] as? [Dictionary<String,Any>] ?? []
-                for p in profilesArray{
-                    var profileObj=Profiles()
-                    
-                    profileObj.file_path=p["file_path"] as? String ?? ""
-                    
-                    self.profiles.append(profileObj)
-                    
-                }
-                self.updateUIProfile!(self.profiles)
+                //using the array to put values
                 
+                let profileJson = try decoder.decode(ApiProfileResponse.self, from: resultProfile)
+                self.profiles = profileJson.profiles!
+                
+                
+                self.updateUIProfile?(self.profiles)
+            
+                
+            }catch let err{
+                print(err)
             }
+             
+            
+               
+                
             
         }
+        
+    
         
         networkService.onCompleteImage = {imageData  in
             if imageData != nil
@@ -54,9 +58,9 @@ class DetailsModel: DetailsModelProtocol {
             }}
     }
     
-    func requestURLProfile(url: String, completion: @escaping ([Profiles]) -> ()) {
+    func requestURLProfile(id:Int, completion: @escaping ([Profiles]) -> ()) {
         updateUIProfile = completion
-         networkService.downloadProfilesJson(urlJsonString: url)
+         networkService.getProfileResponse(id: id)
     }
     
     func requestImageURLProfile(url: String, completion: @escaping (Data) -> ()) {

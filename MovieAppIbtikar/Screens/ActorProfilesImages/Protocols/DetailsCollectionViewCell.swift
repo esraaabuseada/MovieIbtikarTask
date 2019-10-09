@@ -9,5 +9,5 @@
 import Foundation
 
 protocol DetailsCollectionViewCellProtocol {
-    func displayProfilesImage(imgData :Data)
+    func displayProfilesImage(image :String)
 }
