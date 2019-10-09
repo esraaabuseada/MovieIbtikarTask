@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.798631"
+            timestampString = "592337066.914448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -346,7 +346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.798777"
+            timestampString = "592337066.9148639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.798846"
+            timestampString = "592337066.915152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,39 +378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.798898"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "init()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.798949"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "init()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.798999"
+            timestampString = "592337066.915406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -422,15 +390,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.7990479"
+            timestampString = "592337066.916072"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,13 +410,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
-            timestampString = "592333860.799096"
+            timestampString = "592337066.916316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "init()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.Data) -&gt; () in MovieAppIbtikar.ActorModel.init() -&gt; MovieAppIbtikar.ActorModel"
+                  moduleName = "MovieAppIbtikar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Developer/MovieIbtikarTask/MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
+                  timestampString = "592337067.18074"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "1333">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.Data) -&gt; () in MovieAppIbtikar.ActorModel.init() -&gt; MovieAppIbtikar.ActorModel"
+                  moduleName = "MovieAppIbtikar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Developer/MovieIbtikarTask/MovieAppIbtikar/Screens/PopularActors/ActorModel.swift"
+                  timestampString = "592337067.1840661"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "2033">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

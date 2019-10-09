@@ -163,12 +163,14 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-framework/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-framework/Moya.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper-framework/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-framework/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-framework/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-framework/Moya.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper-framework/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result-framework/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework"
 fi

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import ObjectMapper
 
 class ActorModel: ActorModelProtocol  {
     
@@ -26,12 +26,14 @@ class ActorModel: ActorModelProtocol  {
             do{
                 self.persons = []
                 //created the json decoder
-                let decoder = JSONDecoder()
+//                let decoder = JSONDecoder()
+//                let pp = try decoder.decode(ApiResponse.self, from: result)
+//                self.persons = pp.results!
+//
+                let dataString = String(data: result, encoding: .utf8)
+                let personJson = Mapper<ApiResponse>().map(JSONString: dataString!)
+                self.persons = (personJson?.results)!
                 
-                //using the array to put values
-              
-           let pp = try decoder.decode(ApiResponse.self, from: result)
-                self.persons = pp.results!
                 
                 
                 self.updateUI?(self.persons)

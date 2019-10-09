@@ -13,7 +13,7 @@ class DetailsViewController: UIViewController,DetailsViewProtocol, UICollectionV
     
     @IBOutlet var collectionview: UICollectionView!
     var  imageURL="https://image.tmdb.org/t/p/w500/"
-    var personObjPassed = Person(id: 18918,profile_path: "/kuqFzlYMc2IrsOyPznMd1FroeGq.jpg",name: "Dwayne Johnson")
+   var personObjPassed = Person(id: 18918,profile_path: "/kuqFzlYMc2IrsOyPznMd1FroeGq.jpg",name: "Dwayne Johnson")
     var passedImage : UIImage!
     var profilesArray:[Profiles]=[]
     var pageNumber:Int=1
