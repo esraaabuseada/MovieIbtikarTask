@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import ObjectMapper
 
 class DetailsModel: DetailsModelProtocol {
     var profiles:[Profiles]=[]
@@ -26,14 +26,13 @@ class DetailsModel: DetailsModelProtocol {
             
             do{
                 self.profiles = []
-                //created the json decoder
-                let decoder = JSONDecoder()
-                
-                //using the array to put values
-                
-                let profileJson = try decoder.decode(ApiProfileResponse.self, from: resultProfile)
-                self.profiles = profileJson.profiles!
-                
+//                let decoder = JSONDecoder()
+//                let profileJson = try decoder.decode(ApiProfileResponse.self, from: resultProfile)
+//                self.profiles = profileJson.profiles!
+                let dataString = String(data: resultProfile, encoding: .utf8)
+                let personJson = Mapper<ApiProfileResponse>().map(JSONString: dataString!)
+                self.profiles = (personJson?.profiles)!
+
                 
                 self.updateUIProfile?(self.profiles)
             
