@@ -5,7 +5,9 @@ PODS:
   - Moya/Core (10.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
+  - OAuthSwift (2.0.0)
   - ObjectMapper (3.5.1)
+  - p2.OAuth2 (4.2.0)
   - Result (3.2.4)
   - SDWebImage (5.1.1):
     - SDWebImage/Core (= 5.1.1)
@@ -13,24 +15,30 @@ PODS:
 
 DEPENDENCIES:
   - Moya (= 10.0.1)
+  - OAuthSwift (~> 2.0.0)
   - ObjectMapper (~> 3.4)
+  - p2.OAuth2 (~> 4.2)
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Moya
+    - OAuthSwift
     - ObjectMapper
+    - p2.OAuth2
     - Result
     - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  OAuthSwift: 6805456763cf1c7ae0c16765257ed430b7aacae7
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  p2.OAuth2: d5ea9b928fc5d10d088d419db6f3380578b6f866
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
 
-PODFILE CHECKSUM: bbbeeabe7b7e9bf806bf8befaf6aefd468578e4f
+PODFILE CHECKSUM: cbc64ce07f3cfc267c9712054042b1c0ce72492c
 
 COCOAPODS: 1.7.5

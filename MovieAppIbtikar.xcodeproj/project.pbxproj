@@ -40,6 +40,7 @@
 		CE3F3D512327DC7500F03BF8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D502327DC7500F03BF8 /* Person.swift */; };
 		CE3F3D552327DE8F00F03BF8 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */; };
 		CE3F3D572327DEA500F03BF8 /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */; };
+		CE40458423549AFB00797DA2 /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40458323549AFB00797DA2 /* UploadImageViewController.swift */; };
 		CE8054FE234CA6AF00B3C4D2 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8054FD234CA6AF00B3C4D2 /* ApiResponse.swift */; };
 		CEAB38BD234E455D002CD162 /* Profiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAB38BC234E455D002CD162 /* Profiles.swift */; };
 		CEAB38BF234E4568002CD162 /* ApiProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAB38BE234E4567002CD162 /* ApiProfileResponse.swift */; };
@@ -115,6 +116,7 @@
 		CE3F3D502327DC7500F03BF8 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		CE3F3D542327DE8F00F03BF8 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 		CE3F3D562327DEA500F03BF8 /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
+		CE40458323549AFB00797DA2 /* UploadImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		CE8054FD234CA6AF00B3C4D2 /* ApiResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiResponse.swift; path = ../../../../Downloads/codegen_5d9c650d553db/ApiResponse.swift; sourceTree = "<group>"; };
 		CEAB38BC234E455D002CD162 /* Profiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profiles.swift; path = "../../../../../Downloads/codegen_5d9e0c9c49c91-3/Profiles.swift"; sourceTree = "<group>"; };
 		CEAB38BE234E4567002CD162 /* ApiProfileResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiProfileResponse.swift; path = "../../../../../Downloads/codegen_5d9e0c9c49c91-3/ApiProfileResponse.swift"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				CE04E7DE232F7DE70028BA22 /* ActorProfilesImages */,
 				CE04E7DD232F7DC10028BA22 /* PopularActors */,
 				CE04E7DF232F7E0A0028BA22 /* SavaProfileImage */,
+				CE40458323549AFB00797DA2 /* UploadImageViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				CED7ECB42332256C00904EE4 /* SaveImageModelProtocol.swift in Sources */,
 				CE32699E234E22BA00359C33 /* MovieApi.swift in Sources */,
 				CE3F3D3B2327CFDA00F03BF8 /* ActorViewController.swift in Sources */,
+				CE40458423549AFB00797DA2 /* UploadImageViewController.swift in Sources */,
 				CE04E7EE232FA8720028BA22 /* DetailsViewProtocol.swift in Sources */,
 				CED7ECB62332258100904EE4 /* SaveImageViewProtocol.swift in Sources */,
 				848B38F6231C52E10003A186 /* HeaderVIew.swift in Sources */,
