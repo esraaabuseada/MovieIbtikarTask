@@ -23,7 +23,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>MovieAppIbtikar</string>
+				<string>oauth-swift</string>
 			</array>
 		</dict>
 		<dict/>

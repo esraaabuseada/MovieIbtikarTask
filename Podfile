@@ -10,7 +10,7 @@ pod 'SDWebImage', '~> 5.0'
 pod ‘Moya’, ‘10.0.1’ 
 pod 'ObjectMapper', '~> 3.4' 
 pod 'OAuthSwift', '~> 2.0.0'
-pod 'p2.OAuth2', '~> 4.2'
+pod 'SWXMLHash', '~> 5.0.0'
 end
 
 target 'MovieAppIbtikarTests' do
@@ -18,5 +18,5 @@ target 'MovieAppIbtikarTests' do
  pod ‘Moya’, ‘10.0.1’
 pod 'ObjectMapper', '~> 3.4'
 pod 'OAuthSwift', '~> 2.0.0'
-pod 'p2.OAuth2', '~> 4.2'
+pod 'SWXMLHash', '~> 5.0.0'
 end

@@ -255,11 +255,29 @@
                                     <constraint firstAttribute="height" constant="260" id="SZB-tS-PRx"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogQ-FK-Fvq">
+                                <rect key="frame" x="16" y="479" width="343" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="WOR-os-U6m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImage:" destination="XEC-zw-hrH" eventType="touchUpInside" id="43w-6a-Gbk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.70885978540000005" blue="0.8373822689" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="ogQ-FK-Fvq" firstAttribute="top" secondItem="FTS-vW-S1R" secondAttribute="bottom" constant="168" id="1QM-dD-Evp"/>
                             <constraint firstItem="Ubj-CF-0iY" firstAttribute="trailing" secondItem="FTS-vW-S1R" secondAttribute="trailing" constant="16" id="CYD-UM-yEN"/>
                             <constraint firstItem="Ubj-CF-0iY" firstAttribute="bottom" secondItem="Uns-nj-bff" secondAttribute="bottom" constant="20" id="DoW-VM-oFc"/>
+                            <constraint firstItem="ogQ-FK-Fvq" firstAttribute="leading" secondItem="Ubj-CF-0iY" secondAttribute="leading" constant="16" id="Y4X-yY-zZj"/>
+                            <constraint firstItem="Ubj-CF-0iY" firstAttribute="trailing" secondItem="ogQ-FK-Fvq" secondAttribute="trailing" constant="16" id="cvv-Al-ZXu"/>
+                            <constraint firstItem="Uns-nj-bff" firstAttribute="top" secondItem="ogQ-FK-Fvq" secondAttribute="bottom" constant="28" id="hHi-uN-A9R"/>
                             <constraint firstItem="Uns-nj-bff" firstAttribute="leading" secondItem="Ubj-CF-0iY" secondAttribute="leading" constant="16" id="jj1-8L-m2k"/>
                             <constraint firstItem="FTS-vW-S1R" firstAttribute="leading" secondItem="Ubj-CF-0iY" secondAttribute="leading" constant="16" id="tWg-un-thd"/>
                             <constraint firstItem="Uns-nj-bff" firstAttribute="top" secondItem="FTS-vW-S1R" secondAttribute="bottom" constant="247" id="vX3-th-rSU"/>
