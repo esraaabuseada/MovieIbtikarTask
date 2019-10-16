@@ -11,27 +11,21 @@ import OAuthSwift
 import SWXMLHash
 
 class UploadImageViewController: UIViewController  {
-
     @IBOutlet weak var image: UIImageView!
     var imagePicker = UIImagePickerController()
     var data = Data()
-   var  oauthswift = OAuth1Swift(
-    consumerKey:    "54b9f5f446f8a31c534f6c9a0a17b8e5",
-    consumerSecret: "01004de893b671eb",
-    requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
-    authorizeUrl:    "https://www.flickr.com/services/oauth/authorize",
-    accessTokenUrl:  "https://www.flickr.com/services/oauth/access_token"
+    var  oauthswift = OAuth1Swift(
+        consumerKey:    "54b9f5f446f8a31c534f6c9a0a17b8e5",
+        consumerSecret: "01004de893b671eb",
+        requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
+        authorizeUrl:    "https://www.flickr.com/services/oauth/authorize",
+        accessTokenUrl:  "https://www.flickr.com/services/oauth/access_token"
     )
-    // authorize
-   
     
+    // authorize
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        
-
-      
-     
     }
     
     @IBAction func uploadImage(_ sender: Any) {
@@ -43,13 +37,10 @@ class UploadImageViewController: UIViewController  {
                 print(credential.oauthTokenSecret)
                 var imgname = "flower"
                 guard let imgData = self.image.image?.pngData() else {return}
-               
                 let mutli =  OAuthSwiftMultipartData(name: "photo", data: imgData, fileName: "filename" , mimeType: "png")
-                
-                
                 self.oauthswift.client.postMultiPartRequest("https://up.flickr.com/services/upload/", method: .POST, parameters: parameters, multiparts: [mutli], completionHandler: {responseResult in
                     switch responseResult{
-                        case .success(let response ):
+                    case .success(let response ):
                         print(response)
                         let xml = SWXMLHash.parse(response.data)
                         print(xml)
@@ -60,52 +51,25 @@ class UploadImageViewController: UIViewController  {
                         print(error.localizedDescription)
                         
                     }
-                    
                 })
-                
-            // Do your request
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    
     @IBAction func pickImage(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
-        
-        
-       
-            
-            
         present(imagePicker,animated: true, completion: nil)
     }
-    
-   
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension UploadImageViewController :UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image.image = img
-            
-            
         }
         dismiss(animated: true, completion: nil)
-        
-       
-        
     }
 }
